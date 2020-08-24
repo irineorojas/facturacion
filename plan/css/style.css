@@ -1,0 +1,151 @@
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+h1{
+	font-family: Algerian;
+	font-weight: bold;
+}
+a{
+	text-decoration: none;
+	font-family: "times new roman";
+}
+
+span{
+	font-family: "times new roman";
+	font-size: 14px;
+	line-height: 20px;
+
+}
+.headerr{
+	color: #FFF;
+	background: #339933;
+	height: 60px;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	position: ;
+	width: 100%;
+}
+.banner{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+.foto{
+	margin: 50px 10px;
+	width: 50px;
+	height: 50px;
+}
+.banner span{
+    font-size: 16px;
+    font-family: 'GothamBook';
+    text-transform: uppercase;
+    margin-left: 30px;
+}
+.cerrar{
+	width: 40px;
+	height: 40px;
+}
+
+
+/*registro de usuario*/
+
+.registro{
+	width: 30%;
+	margin: 0px auto;
+}
+.registro h1{
+	color: #3498DB;
+}
+hr{
+	border:0;
+	background: #CCC;
+	height: 1px;
+	margin: 10px 0;
+	display: block;
+}
+form{
+	background: #AAB7B8;
+	margin: ;
+	padding: 20px 50px;
+	border:1px solid #34495E;
+	border-radius: 5px;
+}
+ label{
+ 	display: block;
+ 	font-size: 16px;
+ 	font-family: 'GothamBook';
+ 	margin: 15px auto 5px auto;
+ }
+
+ input, select{
+ 	display: block;
+ 	width: 100%;
+ 	font-size: 16px;
+ 	padding: 5px;
+ 	border:1px solid #34495E;
+ 	border-radius: 5px;
+ }
+ .guardar{
+ 	margin: 10px 0;
+ 	background: #2E86C1;
+ 	color: #D0D3D4;
+ 	font-size: 20px;
+ 	padding: 10px;
+ 	border:0;
+ 	border-radius: 10px;
+ }
+ .guardar:hover{
+ 	cursor: pointer;
+ 	background: #27AE60;
+ }
+ @media screen and (max-width: 1200px) {
+ 	.registro{
+	width: 35%;
+		
+ }
+ @media screen and (max-width: 960px) {
+ 	.registro{
+	width: 40%;
+ 	}
+ .registro h1{
+	font-size: 28px;
+	}
+}
+ @media screen and (max-width: 720px) {
+ 	.registro{
+		width: 45%;
+	}
+	.abrir{
+	transform: translateX(40%);
+}
+		
+ }
+ @media screen and (max-width: 640px) {
+ 	.registro{
+	width: 55%;
+	}	
+ }
+ @media screen and (max-width: 320px) {
+ 	.registro{
+	width: 70%;
+	}
+ }
+ .registro h1{
+	font-size: 27px;
+	text-align: center;
+	}
+}
