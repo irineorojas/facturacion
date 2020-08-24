@@ -46,7 +46,6 @@ if (!empty($_POST)) {
 	<?php include('header.php') ?>
 	<div class="registro">
 		<h1>Formulario de Registro</h1>
-		<hr>
 		<form action="" method="POST">
 			<label for="nombre">Nombre:</label>
 			<input type="text" name="nombre" id="nombre">
