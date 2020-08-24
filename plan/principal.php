@@ -12,7 +12,7 @@
 </head>
 <body>
 	<?php include('header.php') ?>
-	<h1>s,dnclskdvnskn,n</h1>
+	<h1>Bienvenido a sistea de facturacion</h1>
 	
 </body>
 </html>

@@ -29,7 +29,7 @@
 						<li class="go-back">Atras</li>
 
 						<li><a href="registrouser.php">Nuevo Usuario</a></li>
-						<li><a href="#">Mostrar Usuario</a></li>
+						<li><a href="mostraruser.php">Mostrar Usuario</a></li>
 					</ul>
 				</li>
 
@@ -38,8 +38,8 @@
 					<ul class="submenu">
 						<li class="go-back">Atras</li>
 
-						<li><a href="#">Nuevo Cliente</a></li>
-						<li><a href="#">Mostrar Cliente</a></li>
+						<li><a href="registrocliente.php">Nuevo Cliente</a></li>
+						<li><a href="mostrarcliente.php">Mostrar Cliente</a></li>
 					</ul>
 				</li>
 				<li class="item-submenu" menu="3">
