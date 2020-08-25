@@ -10,8 +10,6 @@ body{
 	
 }
 
-
-
 h1{
 	font-family: Algerian;
 	font-weight: bold;
@@ -20,18 +18,13 @@ a{
 	text-decoration: none;
 	font-family: "times new roman";
 }
-p{
-	font-family: 'GothamBook';
-}
 span{
-	font-family: "GothamBook";
 	font-size: 14px;
 	line-height: 20px;
 
 }
 
 header{
-	position:;
 	width: 50px;
 	top: 0;
 	left: 0;

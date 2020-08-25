@@ -29,7 +29,7 @@ include "../conexion.php";
 				<th>Accion</th>
 			</tr>
 			<?php 
-			$sql=mysqli_query($conexion, "SELECT u.idusuario,u.nombre,u.correo, u.usuario,r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol");
+			$sql=mysqli_query($conexion, "SELECT u.idusuario,u.nombre,u.correo, u.usuario,r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol where estado=1");
 			$resutl=mysqli_num_rows($sql);
 			if ($resutl>0) {
 				while ($data=mysqli_fetch_array($sql)) {
@@ -42,9 +42,11 @@ include "../conexion.php";
 						<td><?php echo $data['rol'] ?></td>
 						<td>
 							<a href="actualizaruser.php?id=<?php echo $data['idusuario'] ?>" class="edit">Edit</a>
+							<?php if ($data['idusuario']!=1) {?>
 							||
 							<a href="eliminaruser.php?id=<?php echo $data['idusuario'] ?>" class="delete">Delete</a>
-						</td>
+						<?php } ?>
+					</td>
 					</tr>
 				<?php
 				}

@@ -75,7 +75,6 @@ span{
 
 form{
 	background: #AAB7B8;
-	margin: ;
 	padding: 20px 50px;
 	border:1px solid #34495E;
 	border-radius: 5px;
@@ -83,7 +82,6 @@ form{
  label{
  	display: block;
  	font-size: 16px;
- 	font-family: 'GothamBook';
  	margin: 15px auto 5px auto;
  }
 
@@ -137,11 +135,17 @@ form{
  @media screen and (max-width: 640px) {
  	.registro{
 	width: 55%;
-	}	
+	}
+	.delete{
+	width:200px;	
+	}
  }
  @media screen and (max-width: 320px) {
  	.registro{
 	width: 70%;
+	}
+	.delete{
+		width: 100px;
 	}
  }
 
@@ -193,4 +197,48 @@ tr td{
 }
 .delete{
 	color: #E74C3C;
+}
+
+.delete_form{
+	background:  #D5F5E3;
+	width: 300px;
+	margin: auto;
+	padding: 10px;
+	border-radius: 5px;
+}
+.delete_form h2{
+	font-size: 20px;
+	color: #2C3E50;
+	text-align: center;
+
+}
+.delete_form span{
+	color:#2980B9  ;
+	font-size: 18px;
+}
+.delete_form p{
+	color: #2C3E50;
+	font-size: 20px;
+}
+.cancelar, .aceptar{
+	width: 150px;
+	background: #27AE60;
+	display: block;
+	padding: 10px;
+	border:0;
+	text-align: center;
+	border-radius: 5px;
+	cursor: pointer;
+	margin: 10px auto;
+	color: #FFF;
+}
+.cancelar{
+	text-decoration: none;
+	font-size: 18px;
+	background: #3498DB;
+}
+.operation{
+	margin: auto;
+	background: initial;
+	border:0;
 }
