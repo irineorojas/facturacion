@@ -24,11 +24,12 @@ include "../conexion.php";
 				<th>Id</th>
 				<th>Nombre</th>
 				<th>Correo</th>
+				<th>Usuario</th>
 				<th>Rol</th>
 				<th>Accion</th>
 			</tr>
 			<?php 
-			$sql=mysqli_query($conexion, "SELECT u.idusuario,u.nombre,u.correo,r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol");
+			$sql=mysqli_query($conexion, "SELECT u.idusuario,u.nombre,u.correo, u.usuario,r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol");
 			$resutl=mysqli_num_rows($sql);
 			if ($resutl>0) {
 				while ($data=mysqli_fetch_array($sql)) {
@@ -37,9 +38,10 @@ include "../conexion.php";
 						<td><?php echo $data['idusuario'] ?></td>
 						<td><?php echo $data['nombre'] ?></td>
 						<td><?php echo $data['correo'] ?></td>
+						<td><?php echo $data['usuario'] ?></td>
 						<td><?php echo $data['rol'] ?></td>
 						<td>
-							<a href="" class="edit">Edit</a>
+							<a href="actualizaruser.php" class="edit">Edit</a>
 							||
 							<a href="" class="delete">Delete</a>
 						</td>
