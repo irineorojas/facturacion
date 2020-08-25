@@ -34,7 +34,7 @@ if (!empty($_POST)) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Sistema de facturacion</title>
+	<title>Registro usuario</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/estilos.css">
 	<link rel="stylesheet" href="css/font-awesome.css">
@@ -45,7 +45,7 @@ if (!empty($_POST)) {
 <body>
 	<?php include('header.php') ?>
 	<div class="registro">
-		<h1>Formulario de Registro</h1>
+		<h1>Registro de usuario</h1>
 		<form action="" method="POST">
 			<label for="nombre">Nombre:</label>
 			<input type="text" name="nombre" id="nombre">

@@ -47,8 +47,8 @@
 					<ul class="submenu">
 						<li class="go-back">Atras</li>
 
-						<li><a href="#">Nuevo proveedor</a></li>
-						<li><a href="#">Mostrar Proveedor</a></li>
+						<li><a href="registroproveedor.php">Nuevo proveedor</a></li>
+						<li><a href="mostrarproveedor.php">Mostrar Proveedor</a></li>
 					</ul>
 				</li>
 				<li class="item-submenu" menu="4">
@@ -56,8 +56,8 @@
 					<ul class="submenu">
 						<li class="go-back">Atras</li>
 
-						<li><a href="#">Nuevo Producto</a></li>
-						<li><a href="#">Mostrar Producto</a></li>
+						<li><a href="registroproducto.php">Nuevo Producto</a></li>
+						<li><a href="mostrarproducto.php">Mostrar Producto</a></li>
 					</ul>
 				</li>
 				<li class="item-submenu" menu="5">

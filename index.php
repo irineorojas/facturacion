@@ -3,7 +3,7 @@ require_once 'conexion.php';
 //$alert='';
 session_start();
 if (!empty($_SESSION['active'])) {
-    header('Location: principal.php');
+    header('Location: plan/principal.php');
 }else{
     if (!empty($_POST)) {
 

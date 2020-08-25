@@ -7,6 +7,7 @@
 h1{
 	font-family: Algerian;
 	font-weight: bold;
+	margin: 10px;
 }
 a{
 	text-decoration: none;
@@ -69,6 +70,7 @@ span{
 }
 .registro h1{
 	color: #3498DB;
+	margin: 10px;
 }
 
 form{

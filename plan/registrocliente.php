@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +15,7 @@
 <body>
 	<?php include('header.php') ?>
 	<div class="registro">
-		<h1>Formulario de Registro</h1>
-		<hr>
+		<h1>Registro Cliente</h1>
 		<form action="" method="POST">
 			<label for="nit">Nit:</label>
 			<input type="text" name="nit" id="nit">
