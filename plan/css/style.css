@@ -95,6 +95,10 @@ form{
  	border:1px solid #34495E;
  	border-radius: 5px;
  }
+
+ .notItem option:first-child{
+	display: none;
+} 
  .guardar{
  	margin: 10px 0;
  	background: #2E86C1;
@@ -140,12 +144,13 @@ form{
 	width: 70%;
 	}
  }
+
  .registro h1{
 	font-size: 27px;
 	text-align: center;
 	}
-}
 
+}
 
 /*---------mostrar usuario*/
 

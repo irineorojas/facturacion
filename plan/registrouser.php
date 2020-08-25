@@ -56,10 +56,22 @@ if (!empty($_POST)) {
 			<label for="password">Contraseña:</label>
 			<input type="password" name="password" id="password" minlength="4">
 			<label for="rol">Tipo de Usuario:</label>
+			<?php 
+			$sql_rol=mysqli_query($conexion,"SELECT * FROM rol");
+			$resul_rol=mysqli_num_rows($sql_rol);			
+			?>
 			<select name="rol" id="rol">
-				<option value="1">Administrador:</option>
-				<option value="2">Sepervisor</option>
-				<option value="3">Vendedor</option>
+				<?php 
+				if ($resul_rol>0) {
+					while ($rol=mysqli_fetch_array($sql_rol)) {
+				?>
+					<option value="<?php echo $rol['idrol']; ?>"><?php echo $rol['rol']; ?></option>
+				<?php 
+					}
+				}
+
+				 ?>
+				 
 			</select>
 			<input type="submit" name="" value="Guardar Usuario" class="guardar"> 
 		</form>

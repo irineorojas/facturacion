@@ -41,7 +41,7 @@ include "../conexion.php";
 						<td><?php echo $data['usuario'] ?></td>
 						<td><?php echo $data['rol'] ?></td>
 						<td>
-							<a href="actualizaruser.php" class="edit">Edit</a>
+							<a href="actualizaruser.php?id=<?php echo $data['idusuario'] ?>" class="edit">Edit</a>
 							||
 							<a href="" class="delete">Delete</a>
 						</td>

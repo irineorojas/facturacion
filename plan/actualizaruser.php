@@ -1,30 +1,66 @@
 <?php 
 include "../conexion.php";
 if (!empty($_POST)) {
-	if (empty($_POST['nombre']) || empty($_POST['correo']) || empty($_POST['usuario']) || empty($_POST['password']) || empty($_POST['rol'])) {
+	if (empty($_POST['nombre']) || empty($_POST['correo']) || empty($_POST['usuario']) || empty($_POST['rol'])) {
 		echo '<script> alert("No se permite campos vacios")</script>';
 	}else{
+		$idusuario=$_POST['idusuario'];
 		$nombre=$_POST['nombre'];
 		$correo=$_POST['correo'];
 		$usuario=$_POST['usuario'];
 		$password=md5($_POST['password']);
 		$rol=$_POST['rol'];
 
-		$query = mysqli_query($conexion,"SELECT * FROM usuario WHERE usuario='$usuario' or  correo='$correo'");
+		$query = mysqli_query($conexion,"SELECT * FROM usuario 
+												WHERE (usuario='$usuario'and idusuario!='$idusuario') or  (correo='$correo' and idusuario!='$idusuario')");
 		$resul=mysqli_fetch_array($query);
 		if ($resul>0) {
 			echo '<script> alert("El usuario o el correo ya existe")</script>';
 		}else{
-			$insert=mysqli_query($conexion, "INSERT INTO usuario(nombre,correo,usuario,password,rol)
-											VALUES('$nombre','$correo','$usuario','$password','$rol')");
-			if ($insert) {
-				echo '<script> alert("Se inserto con exito")</script>';
+			if (empty($_POST['password'])) {
+				$actua=mysqli_query($conexion,"UPDATE usuario set nombre='$nombre', correo='$correo', usuario='$usuario',rol='$rol' WHERE idusuario='$idusuario'");
 			}else{
-			echo '<script> alert("fallo el registro")</script>';
+				$actua=mysqli_query($conexion,"UPDATE usuario set nombre='$nombre', correo='$correo', usuario='$usuario', password='$password', rol='$rol' WHERE idusuario='$idusuario'");
+			}
+	
+			if ($actua) {
+				echo '<script> alert("Se Actualizo con exito")</script>';
+			}else{
+			echo '<script> alert("fallo la actualizacion")</script>';
 			}
 		}
 
 
+	}
+}
+
+if (empty($_GET['id'])) {
+	header('Location: mostraruser.php');
+}
+$idsuser=$_GET['id'];
+$sql=mysqli_query($conexion,"SELECT u.idusuario, u.nombre, u.correo, u.usuario, (u.rol) as idrol, (r.rol) as rol 
+							FROM usuario u INNER JOIN rol r
+							ON u.rol=r.idrol
+							WHERE idusuario=$idsuser");
+$resultado=mysqli_num_rows($sql);
+if ($resultado==0) {
+	header('Location: mostraruser.php');
+}else{
+	$option='';
+	while ($date=mysqli_fetch_array($sql)) {
+		$iduser=$date['idusuario'];
+		$nombre=$date['nombre'];
+		$correo=$date['correo'];
+		$usuario=$date['usuario'];
+		$idrol=$date['idrol'];
+		$rol=$date['rol'];
+		if ($idrol==1) {
+			$option='<option value="'.$idrol.'" select>'.$rol.'</option>';
+		}elseif ($idrol==2) {
+			$option='<option value="'.$idrol.'" select>'.$rol.'</option>';
+		}elseif ($idrol==3) {
+			$option='<option value="'.$idrol.'" select>'.$rol.'</option>';
+		}
 	}
 }
 
@@ -34,7 +70,7 @@ if (!empty($_POST)) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Registro usuario</title>
+	<title>Actualizar usuario</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/estilos.css">
 	<link rel="stylesheet" href="css/font-awesome.css">
@@ -45,23 +81,36 @@ if (!empty($_POST)) {
 <body>
 	<?php include('header.php') ?>
 	<div class="registro">
-		<h1>Registro de usuario</h1>
+		<h1>Actualizar de usuario</h1>
 		<form action="" method="POST">
+			<input type="hidden" name="idusuario" value="<?php echo $iduser; ?>">
 			<label for="nombre">Nombre:</label>
-			<input type="text" name="nombre" id="nombre">
+			<input type="text" name="nombre" id="nombre" value="<?php echo $nombre; ?>">
 			<label for="correo">Correo:</label>
-			<input type="gmail" name="correo" id="correo">
+			<input type="gmail" name="correo" id="correo" value="<?php echo $correo; ?>">
 			<label for="usuario">Usuario:</label>
-			<input type="text" name="usuario" id="usuario">
+			<input type="text" name="usuario" id="usuario" value="<?php echo $usuario; ?>">
 			<label for="password">Contraseña:</label>
 			<input type="password" name="password" id="password" minlength="4">
 			<label for="rol">Tipo de Usuario:</label>
-			<select name="rol" id="rol">
-				<option value="1">Administrador:</option>
-				<option value="2">Sepervisor</option>
-				<option value="3">Vendedor</option>
+			<?php 
+			$sql_rol=mysqli_query($conexion,"SELECT * FROM rol");
+			$resul_rol=mysqli_num_rows($sql_rol);			
+			?>
+			<select name="rol" id="rol" class="notItem">
+				<?php 
+				echo $option;
+				if ($resul_rol>0) {
+					while ($rol=mysqli_fetch_array($sql_rol)) {
+				?>
+					<option value="<?php echo $rol['idrol']; ?>"><?php echo $rol['rol']; ?></option>
+				<?php 
+					}
+				}
+
+				 ?>
 			</select>
-			<input type="submit" name="" value="Guardar Usuario" class="guardar"> 
+			<input type="submit" name="" value="Actualizar Usuario" class="guardar"> 
 		</form>
 
 	</div>
