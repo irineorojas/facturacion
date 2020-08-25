@@ -143,3 +143,47 @@ form{
 	text-align: center;
 	}
 }
+
+
+/*---------mostrar usuario*/
+
+.lista h1{
+	font-size: 30px;
+	display: inline-block;
+	margin: 0px 0px 0px 30px;
+	font-family: 'times new roman';
+}
+.lista .newuser{
+	display: inline-block;
+	background: #2E86C1;
+	color: #fff;
+	padding: 10px;
+	border-radius: 5px;
+	font-size: 18px;
+	margin: 20px 5px;
+}
+table{
+	border-collapse: collapse;
+	font-size: 16px;
+	width: 95%;
+	margin:auto;
+}
+table th{
+	text-align: left;
+	padding: 10px;
+	color: #fff;
+	background: #1F618D;
+}
+table tr:nth-child(odd){
+	background: #ffff;
+}
+tr td{
+	padding: 10px;
+}
+
+.edit{
+	color:#27AE60;
+}
+.delete{
+	color: #E74C3C;
+}

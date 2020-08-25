@@ -7,6 +7,7 @@
 body{
 	font-family: 'Open sans';
 	background: #E8E8E8;
+	
 }
 
 
@@ -28,49 +29,6 @@ span{
 	line-height: 20px;
 
 }
-.headerr{
-	color: #FFF;
-	background: #339933;
-	height: 60px;
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: -ms-flex;
-	display: -o-flex;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px;
-	position: ;
-	width: 100%;
-}
-.banner{
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-}
-.foto{
-	margin: 50px 10px;
-	width: 50px;
-	height: 50px;
-}
-.banner span{
-    font-size: 16px;
-    font-family: 'GothamBook';
-    text-transform: uppercase;
-    margin-left: 30px;
-}
-.cerrar{
-	width: 40px;
-	height: 40px;
-}
-
-
-
 
 header{
 	position:;
