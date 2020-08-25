@@ -43,7 +43,7 @@ include "../conexion.php";
 						<td>
 							<a href="actualizaruser.php?id=<?php echo $data['idusuario'] ?>" class="edit">Edit</a>
 							||
-							<a href="" class="delete">Delete</a>
+							<a href="eliminaruser.php?id=<?php echo $data['idusuario'] ?>" class="delete">Delete</a>
 						</td>
 					</tr>
 				<?php
