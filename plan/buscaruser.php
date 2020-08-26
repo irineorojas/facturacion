@@ -17,6 +17,13 @@ include "../conexion.php";
 <body>
 	<?php include('header.php') ?>
 	<section class="lista">
+		<?php 
+		$buscar=strtolower($_REQUEST['buscar']);
+		if(empty($buscar)) {
+			header('Location: mostraruser.php');
+		}
+
+		 ?>
 		<h1>Lista de usuarios</h1>
 		<a href="registrouser.php" class="newuser">Nuevo usuario</a>
 		<form action="buscaruser.php" method="get" class="form-buscar">
@@ -33,8 +40,16 @@ include "../conexion.php";
 				<th>Accion</th>
 			</tr>
 			<?php 
+			$rol='';
+			if ($buscar=='administrador') {
+				$rol = "OR rol LIKE '%1%'";
+			}else if ($buscar=='supervisor') {
+				$rol ="OR rol LIKE '%2%'";
+			}else if ($buscar=='vendedor') {
+				$rol = "OR rol LIKE '%3%'";
+			}
 
-			$pag=mysqli_query($conexion,"SELECT COUNT(*) as total FROM usuario where estado=1");
+			$pag=mysqli_query($conexion,"SELECT COUNT(*) as total FROM usuario WHERE (idusuario LIKE '%$buscar%' OR nombre like '%$buscar%' OR correo LIKE '%$buscar%' OR usuario LIKE '%$buscar%' $rol) AND estado=1");
 			$resutado=mysqli_fetch_array($pag);
 			$totalreg=$resutado['total'];
 
@@ -48,7 +63,7 @@ include "../conexion.php";
 			$inicio=($pagina-1)*$porpagina;
 			$totalpag=ceil($totalreg/$porpagina);
 
-			$sql=mysqli_query($conexion, "SELECT u.idusuario,u.nombre,u.correo, u.usuario,r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol where estado=1 ORDER BY idusuario ASC LIMIT $inicio,$porpagina");
+			$sql=mysqli_query($conexion, "SELECT u.idusuario,u.nombre,u.correo, u.usuario,r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol where (u.idusuario like '%$buscar%' or u.nombre like '%$buscar%' or u.correo like '%$buscar%' or u.usuario like '%$buscar%' or r.rol like '%$buscar%') and estado=1 ORDER BY idusuario ASC LIMIT $inicio,$porpagina");
 			$resutl=mysqli_num_rows($sql);
 			if ($resutl>0) {
 				while ($data=mysqli_fetch_array($sql)) {
@@ -73,32 +88,42 @@ include "../conexion.php";
 			 ?>
 			
 		</table>
+		<?php 
+		if ($totalreg!=0) {
+		
+		 ?>
 		<div class="pagina">
 			<ul>
 				<?php if ($pagina!=1) {
-		
 				?>
-				<li><a href="?pagina=<?php echo 1; ?>">|<</a></li>
-				<li><a href="?pagina=<?php echo $pagina-1; ?>"><<</a></li>
+				<li><a href="?pagina=<?php echo 1; ?>&buscar=<?php echo $buscar;?>">|<</a></li>
+				<li><a href="?pagina=<?php echo $pagina-1; ?>&buscar=<?php echo $buscar;?>"><<</a></li>
 				<?php 
 				} 
 				for ($i=1; $i <= $totalpag; $i++) { 
 					if ($i==$pagina) {
 						echo '<li class="selec">'.$i.'</li>';
 					}else{
-						echo '<li><a href="?pagina='.$i.'">'.$i.'</a></li>';
+						echo '<li><a href="?pagina='.$i.'&buscar='.$buscar.'">'.$i.'</a></li>';
 					}
 				 } 
 				 if ($pagina!=$totalpag) {
 				 ?>
-				<li><a href="?pagina=<?php echo $pagina+1; ?>">>></a></li>
-				<li><a href="?pagina=<?php echo $totalpag; ?>">>|</a></li>
+				<li><a href="?pagina=<?php echo $pagina+1; ?>&buscar=<?php echo $buscar;?>">>></a></li>
+				<li><a href="?pagina=<?php echo $totalpag; ?>&buscar=<?php echo $buscar;?>">>|</a></li>
 				<?php } ?>
 			</ul>
-			
-		</div>	
+		</div>
+		<?php 
+		}else{
+		?>	
+		<p style="text-align: center; font-size: 20px; margin-top: 20px">NO SE ENCUENTRA REGISTRADO LA PALABRA "<?php echo $buscar; ?>"</p>
+		<?php	
+		}
+
+		 ?>
 	</section>
 	
 	
 </body>
-</html>
+</html>	

@@ -258,3 +258,25 @@ tr td{
 	background: #1F618D;
 	border: 1px solid #1F618D;
 }
+
+/*.....buscador.....*/
+
+.form-buscar{
+	display: flex;
+	float: right;
+	background: initial;
+	padding: 10px;
+	border-radius:  10px;
+	margin:10px 30px;
+}
+.form-buscar .btn-buscar{
+	background: #1F618D;
+	color: #fff;
+	border:0;
+	padding: 10px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+.form-buscar .bbuscar{
+	width: 250px;
+}
