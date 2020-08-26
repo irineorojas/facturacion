@@ -22,7 +22,7 @@ span{
 }
 .headerr{
 	color: #FFF;
-	background: #339933;
+	background: #85929E;
 	height: 60px;
 	display: -webkit-flex;
 	display: -moz-flex;
@@ -110,51 +110,40 @@ form{
  	cursor: pointer;
  	background: #27AE60;
  }
- @media screen and (max-width: 1200px) {
+ /*media*/
+  @media screen and (max-width: 1200px) {
+ 	.headerr h1, .usuario{
+ 		font-size: 20px;
+ 	}
  	.registro{
-	width: 35%;
-		
+ 		width: 40%;
+ 	}
  }
  @media screen and (max-width: 960px) {
- 	.registro{
-	width: 40%;
+ 	.headerr h1, .usuario{
+ 		font-size: 20px;
  	}
- .registro h1{
-	font-size: 28px;
-	}
-}
- @media screen and (max-width: 720px) {
  	.registro{
-		width: 45%;
-	}
-	.abrir{
-	transform: translateX(40%);
-}
-		
+ 		width: 50%;
+ 	}
  }
- @media screen and (max-width: 640px) {
+ @media screen and (max-width: 620px) {
+ 	.banner p, .line{
+ 		display: none;
+ 	}
+ 	.headerr h1, .usuario{
+ 		font-size: 22px;
+ 	}
  	.registro{
-	width: 55%;
-	}
-	.delete{
-	width:200px;	
-	}
+ 		width: 60%;
+ 	}
  }
- @media screen and (max-width: 320px) {
+ @media screen and (max-width: 420px){
  	.registro{
-	width: 70%;
-	}
-	.delete{
-		width: 100px;
-	}
+ 		width: 80%;
+ 	}
  }
 
- .registro h1{
-	font-size: 27px;
-	text-align: center;
-	}
-
-}
 
 /*---------mostrar usuario*/
 
@@ -241,4 +230,31 @@ tr td{
 	margin: auto;
 	background: initial;
 	border:0;
+}
+
+/*................pagina.......*/
+.pagina ul{
+	padding: 10px;
+	list-style: none;
+	background: #fff;
+	margin-top: 20px;
+	display: flex;
+	justify-content: flex-end;
+}
+.pagina a, .selec{
+	color: #1F618D;
+	border: 1px solid #bbb;
+	padding: 5px;
+	display: inline-block;
+	text-align: center;
+	width: 40px;
+
+}
+.pagina a:hover{
+	background: #ddd;
+}
+.selec{
+	color: #FFFF;
+	background: #1F618D;
+	border: 1px solid #1F618D;
 }

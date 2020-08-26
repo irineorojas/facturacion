@@ -8,7 +8,7 @@
 		<h1>Sistema de facturación</h1>
 		<div class="banner">
 			<p>Perú, <?php echo fecha(); ?></p>
-			<span>|</span>
+			<span class="line">|</span>
 			<span class="usuario"><?php echo $_SESSION['nombre']; ?></span>
 			<img class="foto" src="img/user.png">
 			<a href="cerrar.php"><img class="cerrar" src="img/salir.png" alt="Salir de la pagina" title="Salir"></a>

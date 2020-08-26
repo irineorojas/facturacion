@@ -1,6 +1,10 @@
 <?php 
 include "../conexion.php";
 if (!empty($_POST)) {
+	if ($_POST['idusuario']==1) {
+		header("Location: mostraruser.php");
+		exit;
+	}
 	$idusuario=$_POST['idusuario'];
 	//$query=mysqli_query($conexion, "DELETE FROM usuario WHERE idusuario=$idusuario");
 	$query=mysqli_query($conexion, "UPDATE usuario SET estado=0 WHERE idusuario='$idusuario'");
