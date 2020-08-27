@@ -14,7 +14,7 @@ if (!empty($_SESSION['active'])) {
         $usuario =mysqli_real_escape_string($conexion, $_POST['usuario']);
         $password =md5(mysqli_real_escape_string($conexion, $_POST['password']));
         $query = mysqli_query($conexion,"SELECT * FROM usuario WHERE usuario='$usuario' AND password='$password'");
-
+        mysqli_close($conexion);
         $result = mysqli_num_rows($query);
         if ($result>0){
             $data=mysqli_fetch_array($query);

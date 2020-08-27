@@ -1,4 +1,8 @@
 <?php 
+session_start();
+if ($_SESSION['rol']!=1) {
+	header('Location: principal.php');
+}
 include "../conexion.php";
 if (!empty($_POST)) {
 	if (empty($_POST['nombre']) || empty($_POST['correo']) || empty($_POST['usuario']) || empty($_POST['rol'])) {
@@ -32,16 +36,19 @@ if (!empty($_POST)) {
 
 
 	}
+	mysqli_close($conexion);
 }
 
 if (empty($_GET['id'])) {
 	header('Location: mostraruser.php');
+	mysqli_close($conexion);	
 }
 $idsuser=$_GET['id'];
 $sql=mysqli_query($conexion,"SELECT u.idusuario, u.nombre, u.correo, u.usuario, (u.rol) as idrol, (r.rol) as rol 
 							FROM usuario u INNER JOIN rol r
 							ON u.rol=r.idrol
 							WHERE idusuario=$idsuser");
+mysqli_close($conexion);
 $resultado=mysqli_num_rows($sql);
 if ($resultado==0) {
 	header('Location: mostraruser.php');
@@ -94,7 +101,9 @@ if ($resultado==0) {
 			<input type="password" name="password" id="password" minlength="4">
 			<label for="rol">Tipo de Usuario:</label>
 			<?php 
+			include "../conexion.php";
 			$sql_rol=mysqli_query($conexion,"SELECT * FROM rol");
+			mysqli_close($conexion);
 			$resul_rol=mysqli_num_rows($sql_rol);			
 			?>
 			<select name="rol" id="rol" class="notItem">

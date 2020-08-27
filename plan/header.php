@@ -1,5 +1,4 @@
 <?php 
-	session_start();
 	if (empty($_SESSION['active'])) {
 	    header('Location: ../');
 	}
@@ -9,7 +8,7 @@
 		<div class="banner">
 			<p>Perú, <?php echo fecha(); ?></p>
 			<span class="line">|</span>
-			<span class="usuario"><?php echo $_SESSION['nombre']; ?></span>
+			<span class="usuario"><?php echo $_SESSION['nombre'].'-'.$_SESSION['rol']; ?></span>
 			<img class="foto" src="img/user.png">
 			<a href="cerrar.php"><img class="cerrar" src="img/salir.png" alt="Salir de la pagina" title="Salir"></a>
 		</div>
@@ -22,7 +21,8 @@
 				<li class="title-menu">MENÚ</li>
 
 				<li><a href="principal.php"><span class="fa fa-home icon-menu"></span>Inicio</a></li>
-
+				<?php if ($_SESSION['rol']==1) {
+				?>
 				<li class="item-submenu" menu="1">
 					<a href="#"><img src="img/users.png" class="icono" alt="">Usuario</a>
 					<ul class="submenu">
@@ -32,7 +32,7 @@
 						<li><a href="mostraruser.php">Mostrar Usuario</a></li>
 					</ul>
 				</li>
-
+			<?php } ?>
 				<li class="item-submenu" menu="2">
 					<a href="#"><img src="img/cliente.png" class="icono" alt="">Cliente</a>
 					<ul class="submenu">

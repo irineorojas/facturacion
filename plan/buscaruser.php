@@ -1,4 +1,8 @@
 <?php 
+session_start();
+if ($_SESSION['rol']!=1) {
+	header('Location: principal.php');
+}
 include "../conexion.php";
  ?>
 <!DOCTYPE html>
@@ -21,6 +25,7 @@ include "../conexion.php";
 		$buscar=strtolower($_REQUEST['buscar']);
 		if(empty($buscar)) {
 			header('Location: mostraruser.php');
+			mysqli_close($conexion);
 		}
 
 		 ?>
@@ -64,6 +69,7 @@ include "../conexion.php";
 			$totalpag=ceil($totalreg/$porpagina);
 
 			$sql=mysqli_query($conexion, "SELECT u.idusuario,u.nombre,u.correo, u.usuario,r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol where (u.idusuario like '%$buscar%' or u.nombre like '%$buscar%' or u.correo like '%$buscar%' or u.usuario like '%$buscar%' or r.rol like '%$buscar%') and estado=1 ORDER BY idusuario ASC LIMIT $inicio,$porpagina");
+			mysqli_close($conexion);
 			$resutl=mysqli_num_rows($sql);
 			if ($resutl>0) {
 				while ($data=mysqli_fetch_array($sql)) {

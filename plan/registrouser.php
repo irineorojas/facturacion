@@ -1,4 +1,8 @@
 <?php 
+session_start();
+if ($_SESSION['rol']!=1) {
+	header('Location: principal.php');
+}
 include "../conexion.php";
 if (!empty($_POST)) {
 	if (empty($_POST['nombre']) || empty($_POST['correo']) || empty($_POST['usuario']) || empty($_POST['password']) || empty($_POST['rol'])) {
@@ -11,6 +15,7 @@ if (!empty($_POST)) {
 		$rol=$_POST['rol'];
 
 		$query = mysqli_query($conexion,"SELECT * FROM usuario WHERE usuario='$usuario' or  correo='$correo'");
+		mysqli_close($conexion);
 		$resul=mysqli_fetch_array($query);
 		if ($resul>0) {
 			echo '<script> alert("El usuario o el correo ya existe")</script>';
@@ -58,6 +63,7 @@ if (!empty($_POST)) {
 			<label for="rol">Tipo de Usuario:</label>
 			<?php 
 			$sql_rol=mysqli_query($conexion,"SELECT * FROM rol");
+			mysqli_close($conexion);
 			$resul_rol=mysqli_num_rows($sql_rol);			
 			?>
 			<select name="rol" id="rol">
