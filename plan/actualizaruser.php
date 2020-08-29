@@ -15,17 +15,16 @@ if (!empty($_POST)) {
 		$password=md5($_POST['password']);
 		$rol=$_POST['rol'];
 
-		$query = mysqli_query($conexion,"SELECT * FROM usuario WHERE (usuario='$usuario'and idusuario!='$idusuario') or  (correo='$correo' and idusuario!='$idusuario')");
+		$query = mysqli_query($conexion,"SELECT * FROM usuario WHERE (usuario='$usuario'and idusuario!=$idusuario) or  (correo='$correo' and idusuario!=$idusuario)");
 		$resul=mysqli_fetch_array($query);
 		if ($resul>0) {
 			echo '<script> alert("El usuario o el correo ya existe")</script>';
 		}else{
 			if (empty($_POST['password'])) {
-				$actua=mysqli_query($conexion,"UPDATE usuario SET nombre='$nombre', correo='$correo', usuario='$usuario',rol='$rol' WHERE idusuario='$idusuario'");
+				$actua=mysqli_query($conexion,"UPDATE usuario SET nombre='$nombre', correo='$correo', usuario='$usuario',idrol='$rol' WHERE idusuario=$idusuario");
 			}else{
-				$actua=mysqli_query($conexion,"UPDATE usuario SET nombre='$nombre', correo='$correo', usuario='$usuario', password='$password', rol='$rol' WHERE idusuario='$idusuario'");
+				$actua=mysqli_query($conexion,"UPDATE usuario SET nombre='$nombre', correo='$correo', usuario='$usuario', password='$password', idrol='$rol' WHERE idusuario=$idusuario");
 			}
-	
 			if ($actua) {
 				echo '<script> alert("Se Actualizo con exito")</script>';
 			}else{
