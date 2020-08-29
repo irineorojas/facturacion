@@ -14,6 +14,8 @@
 <body>
 	<?php include('header.php') ?>
 	
-	
+	<footer>
+		<p>Perú, <?php echo fecha(); ?></p>
+	</footer>
 </body>
 </html>

@@ -24,7 +24,7 @@ h3{
     color: blue;
 }
 
-input[type="usuario"], input[type="password"]{
+input[type="usuario"], input[type="password"], select{
     
     color: #191919;
     margin: 20px;

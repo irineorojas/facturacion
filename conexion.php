@@ -2,7 +2,7 @@
 $host ='localhost';
 $user='root';
 $password='';
-$bd='facturacion';
+$bd='bdfacturacion';
 
 $conexion = new mysqli($host, $user, $password, $bd);
 

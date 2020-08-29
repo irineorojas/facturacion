@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if ($_SESSION['rol']!=1) {
+if ($_SESSION['idrol']!=1) {
 	header('Location: principal.php');
 }
 include "../conexion.php";
@@ -15,16 +15,15 @@ if (!empty($_POST)) {
 		$password=md5($_POST['password']);
 		$rol=$_POST['rol'];
 
-		$query = mysqli_query($conexion,"SELECT * FROM usuario 
-												WHERE (usuario='$usuario'and idusuario!='$idusuario') or  (correo='$correo' and idusuario!='$idusuario')");
+		$query = mysqli_query($conexion,"SELECT * FROM usuario WHERE (usuario='$usuario'and idusuario!='$idusuario') or  (correo='$correo' and idusuario!='$idusuario')");
 		$resul=mysqli_fetch_array($query);
 		if ($resul>0) {
 			echo '<script> alert("El usuario o el correo ya existe")</script>';
 		}else{
 			if (empty($_POST['password'])) {
-				$actua=mysqli_query($conexion,"UPDATE usuario set nombre='$nombre', correo='$correo', usuario='$usuario',rol='$rol' WHERE idusuario='$idusuario'");
+				$actua=mysqli_query($conexion,"UPDATE usuario SET nombre='$nombre', correo='$correo', usuario='$usuario',rol='$rol' WHERE idusuario='$idusuario'");
 			}else{
-				$actua=mysqli_query($conexion,"UPDATE usuario set nombre='$nombre', correo='$correo', usuario='$usuario', password='$password', rol='$rol' WHERE idusuario='$idusuario'");
+				$actua=mysqli_query($conexion,"UPDATE usuario SET nombre='$nombre', correo='$correo', usuario='$usuario', password='$password', rol='$rol' WHERE idusuario='$idusuario'");
 			}
 	
 			if ($actua) {
@@ -36,18 +35,16 @@ if (!empty($_POST)) {
 
 
 	}
-	mysqli_close($conexion);
+	//mysqli_close($conexion);
 }
 
+//
 if (empty($_GET['id'])) {
 	header('Location: mostraruser.php');
 	mysqli_close($conexion);	
 }
-$idsuser=$_GET['id'];
-$sql=mysqli_query($conexion,"SELECT u.idusuario, u.nombre, u.correo, u.usuario, (u.rol) as idrol, (r.rol) as rol 
-							FROM usuario u INNER JOIN rol r
-							ON u.rol=r.idrol
-							WHERE idusuario=$idsuser");
+$idusuario=$_GET['id'];
+$sql=mysqli_query($conexion,"SELECT u.idusuario, u.nombre, u.correo, u.usuario, (u.idrol) as idrol, (r.rol) as rol FROM usuario u INNER JOIN rol r ON u.idrol=r.idrol WHERE idusuario=$idusuario");
 mysqli_close($conexion);
 $resultado=mysqli_num_rows($sql);
 if ($resultado==0) {
@@ -63,9 +60,9 @@ if ($resultado==0) {
 		$rol=$date['rol'];
 		if ($idrol==1) {
 			$option='<option value="'.$idrol.'" select>'.$rol.'</option>';
-		}elseif ($idrol==2) {
+		}else if ($idrol==2) {
 			$option='<option value="'.$idrol.'" select>'.$rol.'</option>';
-		}elseif ($idrol==3) {
+		}else if ($idrol==3) {
 			$option='<option value="'.$idrol.'" select>'.$rol.'</option>';
 		}
 	}
@@ -120,9 +117,13 @@ if ($resultado==0) {
 				 ?>
 			</select>
 			<input type="submit" name="" value="Actualizar Usuario" class="guardar"> 
+			<div class="cancelaredit"><a href="mostraruser.php">Cancelar</a></div>
 		</form>
 
 	</div>
+	<footer>
+		<p>Perú, <?php echo fecha(); ?></p>
+	</footer>
 	
 </body>
 </html>

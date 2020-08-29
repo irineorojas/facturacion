@@ -1,39 +1,33 @@
 <?php 
-require_once 'conexion.php';
+include "conexion.php";
 session_start();
 if (!empty($_SESSION['active'])) {
     header('Location: plan/principal.php');
 }else{
-    if (!empty($_POST)) {
+    if (isset($_POST['usuario']) && isset($conexion, $_POST['password']) && isset($_POST['rol'])) {
+        $usuario=mysqli_real_escape_string($conexion, $_POST['usuario']);
+        $password=md5(mysqli_real_escape_string($conexion, $_POST['password']));
+        $rol=mysqli_real_escape_string($conexion, $_POST['rol']);
+        $sql=mysqli_query($conexion,"SELECT *FROM usuario WHERE usuario='$usuario' AND password='$password' AND idrol='$rol'");
 
-    if(empty($_POST['usuario']) || empty($_POST['password']))
-    {
-        echo '<script> alert("Ingrese su usuario y su Contraseña")</script>';
-
-    }else{
-        $usuario =mysqli_real_escape_string($conexion, $_POST['usuario']);
-        $password =md5(mysqli_real_escape_string($conexion, $_POST['password']));
-        $query = mysqli_query($conexion,"SELECT * FROM usuario WHERE usuario='$usuario' AND password='$password'");
-        mysqli_close($conexion);
-        $result = mysqli_num_rows($query);
-        if ($result>0){
-            $data=mysqli_fetch_array($query);
+        $result=mysqli_num_rows($sql);
+        if ($result>0) {
+            $data=mysqli_fetch_array($sql);
             $_SESSION['active']=true;
-            $_SESSION['idUser']=$data['idusario'];
+            $_SESSION['idusuario']=$data['idusuario'];
             $_SESSION['nombre']=$data['nombre'];
-            $_SESSION['email']=$data['email'];
-            $_SESSION['user']=$data['usuario'];
-            $_SESSION['rol']=$data['rol'];
+            $_SESSION['correo']=$data['correo'];
+            $_SESSION['usuario']=$data['usuario'];
+            $_SESSION['idrol']=$data['idrol'];
 
             header('Location: plan/principal.php');
-            
         }else{
-        echo '<script> alert("CORREO O LA CONTRASEÑA INCORECTA")</script>'; 
+            echo '<script> alert("LOS DATOS DEL USUARIO NO COINCIDEN")</script>'; 
         session_destroy();
         }
     }
-    }
 }
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,10 +40,14 @@ if (!empty($_SESSION['active'])) {
 	<nav>
        <h3>Login</h3>
         <form  action="" method="post">
-        <img src="img/img_avatar.png" alt="" width="200px">
+        <img src="img/img_avatar.png" alt="" width="150px">
         <input type="usuario" name="usuario" placeholder="Usuario">
         <input type="password" name="password" placeholder="Contraseña">
-        <p class="alert"></p>
+        <select name="rol">
+                <option value="1">Administrador</option>
+                <option value="2">Supervisor</option>
+                <option value="3">Vendedor</option>
+        </select>      
         <input type="submit" value="INGRESAR">
         <br><br>
         </form>

@@ -60,6 +60,15 @@ span{
 	width: 40px;
 	height: 40px;
 }
+footer{
+	margin-top: 10px;
+	background: #5F6F81;
+	width: 100%;
+	padding: 20px;
+	color: #fff;
+	font-size: 20px;
+	text-align: right;
+}
 
 
 /*registro de usuario*/
@@ -98,10 +107,10 @@ form{
 	display: none;
 } 
  .guardar{
- 	margin: 10px 0;
+ 	margin: 10px auto;
  	background: #2E86C1;
  	color: #D0D3D4;
- 	font-size: 20px;
+ 	font-size: 18px;
  	padding: 10px;
  	border:0;
  	border-radius: 10px;
@@ -109,6 +118,14 @@ form{
  .guardar:hover{
  	cursor: pointer;
  	background: #27AE60;
+ }
+
+ .cancelaredit{
+ 	width: 100%;
+ 	text-align: center; 
+ 	background: ;	
+ 	font-size: 20px;
+ 	color: #ffff;
  }
  /*media*/
   @media screen and (max-width: 1200px) {
@@ -173,12 +190,12 @@ table th{
 	padding: 10px;
 	color: #fff;
 	background: #1F618D;
+	border: 1px solid;	
 }
-table tr:nth-child(odd){
-	background: #ffff;
-}
+
 tr td{
 	padding: 10px;
+	border: 1px solid #ccc;
 }
 
 .edit{
@@ -191,7 +208,7 @@ tr td{
 .delete_form{
 	background:  #D5F5E3;
 	width: 300px;
-	margin: auto;
+	margin: 10px auto;
 	padding: 10px;
 	border-radius: 5px;
 }
@@ -239,7 +256,7 @@ tr td{
 	background: #fff;
 	margin-top: 20px;
 	display: flex;
-	justify-content: flex-end;
+	justify-content: center;
 }
 .pagina a, .selec{
 	color: #1F618D;
@@ -268,8 +285,9 @@ tr td{
 	padding: 10px;
 	border-radius:  10px;
 	margin:10px 30px;
+	border: 0px;	
 }
-.form-buscar .btn-buscar{
+.btn-buscar{
 	background: #1F618D;
 	color: #fff;
 	border:0;
@@ -279,4 +297,8 @@ tr td{
 }
 .form-buscar .bbuscar{
 	width: 250px;
+}
+.lista img{
+	width: 25px;
+	vertical-align:middle;
 }

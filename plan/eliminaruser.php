@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if ($_SESSION['rol']!=1) {
+if ($_SESSION['idrol']!=1) {
 	header('Location: principal.php');
 }
 include "../conexion.php";
@@ -10,8 +10,7 @@ if (!empty($_POST)) {
 		mysqli_close($conexion);
 		exit;
 	}
-	$idusuario=$_POST['idusuario'];
-	//$query=mysqli_query($conexion, "DELETE FROM usuario WHERE idusuario=$idusuario");
+	$idusuario=$_POST['idusuario']; 
 	$query=mysqli_query($conexion, "UPDATE usuario SET estado=0 WHERE idusuario='$idusuario'");
 	mysqli_close($conexion);
 	if($query){
@@ -26,7 +25,7 @@ if (empty($_REQUEST['id']) || $_REQUEST['id']==1) {
 	mysqli_close($conexion);
 }else{
 	$iduser=$_REQUEST['id'];
-	$sql=mysqli_query($conexion,"SELECT u.nombre, u.usuario,r.rol FROM usuario u INNER JOIN rol r ON u.rol= r.idrol WHERE u.idusuario= $iduser");
+	$sql=mysqli_query($conexion,"SELECT u.nombre, u.usuario,r.rol FROM usuario u INNER JOIN rol r ON u.idrol= r.idrol WHERE u.idusuario= $iduser");
 	mysqli_close($conexion);
 	$result=mysqli_num_rows($sql);
 	if ($result>0) {

@@ -51,6 +51,8 @@
 			
 		</table>
 	</section>
-	
+	<footer>
+		<p>Perú, <?php echo fecha(); ?></p>
+	</footer>
 </body>
 </html>

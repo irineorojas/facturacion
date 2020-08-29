@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if ($_SESSION['rol']!=1) {
+if ($_SESSION['idrol']!=1) {
 	header('Location: principal.php');
 }
 include "../conexion.php";
@@ -21,8 +21,8 @@ include "../conexion.php";
 <body>
 	<?php include('header.php') ?>
 	<section class="lista">
-		<h1>Lista de usuarios</h1>
-		<a href="registrouser.php" class="newuser">Nuevo usuario</a>
+		<h1>Usuarios</h1>
+		<a href="registrouser.php" class="newuser"><img src="img/mas.png"> Nuevo usuario</a>
 		<form action="buscaruser.php" method="get" class="form-buscar">
 			<input type="text" name="buscar" id="buscar" placeholder="Buscar" class="bbuscar">
 			<input type="submit"  class="btn-buscar" value="Buscar">
@@ -34,7 +34,8 @@ include "../conexion.php";
 				<th>Correo</th>
 				<th>Usuario</th>
 				<th>Rol</th>
-				<th>Accion</th>
+				<th>Editar</th>
+				<th>Eliminar</th>
 			</tr>
 			<?php 
 
@@ -52,25 +53,26 @@ include "../conexion.php";
 			$inicio=($pagina-1)*$porpagina;
 			$totalpag=ceil($totalreg/$porpagina);
 
-			$sql=mysqli_query($conexion, "SELECT u.idusuario,u.nombre,u.correo, u.usuario,r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol where estado=1 ORDER BY idusuario ASC LIMIT $inicio,$porpagina");
+			$sql=mysqli_query($conexion, "SELECT u.idusuario,u.nombre,u.correo, u.usuario,r.rol FROM usuario u INNER JOIN rol r ON u.idrol = r.idrol where estado=1 ORDER BY idusuario ASC LIMIT $inicio,$porpagina");
 			mysqli_close($conexion);
 			$resutl=mysqli_num_rows($sql);
 			if ($resutl>0) {
 				while ($data=mysqli_fetch_array($sql)) {
 				?>	
 					<tr>
-						<td><?php echo $data['idusuario'] ?></td>
-						<td><?php echo $data['nombre'] ?></td>
-						<td><?php echo $data['correo'] ?></td>
-						<td><?php echo $data['usuario'] ?></td>
-						<td><?php echo $data['rol'] ?></td>
+						<td><?php echo $data['idusuario']; ?></td>
+						<td><?php echo $data['nombre']; ?></td>
+						<td><?php echo $data['correo']; ?></td>
+						<td><?php echo $data['usuario']; ?></td>
+						<td><?php echo $data['rol']; ?></td>
 						<td>
-							<a href="actualizaruser.php?id=<?php echo $data['idusuario'] ?>" class="edit">Edit</a>
-							<?php if ($data['idusuario']!=1) {?>
-							||
-							<a href="eliminaruser.php?id=<?php echo $data['idusuario'] ?>" class="delete">Delete</a>
-						<?php } ?>
-					</td>
+							<a href="actualizaruser.php?id=<?php echo $data['idusuario']; ?>" class="edit">Edit</a>
+						</td>
+						<?php if ($data['idusuario']!=1) {?>
+						<td>
+							<a href="eliminaruser.php?id=<?php echo $data['idusuario']; ?>" class="delete">Delete</a>
+							<?php } ?>
+						</td>
 					</tr>
 				<?php
 				}
@@ -83,7 +85,6 @@ include "../conexion.php";
 				<?php if ($pagina!=1) {
 		
 				?>
-				<li><a href="?pagina=<?php echo 1; ?>">|<</a></li>
 				<li><a href="?pagina=<?php echo $pagina-1; ?>"><<</a></li>
 				<?php 
 				} 
@@ -97,13 +98,14 @@ include "../conexion.php";
 				 if ($pagina!=$totalpag) {
 				 ?>
 				<li><a href="?pagina=<?php echo $pagina+1; ?>">>></a></li>
-				<li><a href="?pagina=<?php echo $totalpag; ?>">>|</a></li>
 				<?php } ?>
 			</ul>
 			
 		</div>	
 	</section>
-	
+	<footer>
+		<p>Perú, <?php echo fecha(); ?></p>
+	</footer>
 	
 </body>
 </html>

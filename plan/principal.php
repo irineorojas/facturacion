@@ -14,7 +14,10 @@
 </head>
 <body>
 	<?php include('header.php') ?>
-	<h1>Bienvenido a sistea de facturacion</h1>
+	<h1>Bienvenido a sistema de facturacion</h1>
 	
+	<footer>
+		<p>Perú, <?php echo fecha(); ?></p>
+	</footer>
 </body>
 </html>

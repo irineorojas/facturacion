@@ -6,9 +6,7 @@
 <header class="headerr">
 		<h1>Sistema de facturación</h1>
 		<div class="banner">
-			<p>Perú, <?php echo fecha(); ?></p>
-			<span class="line">|</span>
-			<span class="usuario"><?php echo $_SESSION['nombre'].'-'.$_SESSION['rol']; ?></span>
+			<span class="usuario"><?php echo $_SESSION['nombre'].'-'.$_SESSION['idrol']; ?></span>
 			<img class="foto" src="img/user.png">
 			<a href="cerrar.php"><img class="cerrar" src="img/salir.png" alt="Salir de la pagina" title="Salir"></a>
 		</div>
@@ -21,7 +19,7 @@
 				<li class="title-menu">MENÚ</li>
 
 				<li><a href="principal.php"><span class="fa fa-home icon-menu"></span>Inicio</a></li>
-				<?php if ($_SESSION['rol']==1) {
+				<?php if ($_SESSION['idrol']==1) {
 				?>
 				<li class="item-submenu" menu="1">
 					<a href="#"><img src="img/users.png" class="icono" alt="">Usuario</a>

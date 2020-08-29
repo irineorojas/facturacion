@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if ($_SESSION['rol']!=1) {
+if ($_SESSION['idrol']!=1) {
 	header('Location: principal.php');
 }
 include "../conexion.php";
@@ -47,11 +47,11 @@ include "../conexion.php";
 			<?php 
 			$rol='';
 			if ($buscar=='administrador') {
-				$rol = "OR rol LIKE '%1%'";
+				$rol = "OR idrol LIKE '%1%'";
 			}else if ($buscar=='supervisor') {
-				$rol ="OR rol LIKE '%2%'";
+				$rol ="OR idrol LIKE '%2%'";
 			}else if ($buscar=='vendedor') {
-				$rol = "OR rol LIKE '%3%'";
+				$rol = "OR idrol LIKE '%3%'";
 			}
 
 			$pag=mysqli_query($conexion,"SELECT COUNT(*) as total FROM usuario WHERE (idusuario LIKE '%$buscar%' OR nombre like '%$buscar%' OR correo LIKE '%$buscar%' OR usuario LIKE '%$buscar%' $rol) AND estado=1");
@@ -68,7 +68,7 @@ include "../conexion.php";
 			$inicio=($pagina-1)*$porpagina;
 			$totalpag=ceil($totalreg/$porpagina);
 
-			$sql=mysqli_query($conexion, "SELECT u.idusuario,u.nombre,u.correo, u.usuario,r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol where (u.idusuario like '%$buscar%' or u.nombre like '%$buscar%' or u.correo like '%$buscar%' or u.usuario like '%$buscar%' or r.rol like '%$buscar%') and estado=1 ORDER BY idusuario ASC LIMIT $inicio,$porpagina");
+			$sql=mysqli_query($conexion, "SELECT u.idusuario,u.nombre,u.correo, u.usuario,r.rol FROM usuario u INNER JOIN rol r ON u.idrol = r.idrol where (u.idusuario like '%$buscar%' or u.nombre like '%$buscar%' or u.correo like '%$buscar%' or u.usuario like '%$buscar%' or r.rol like '%$buscar%') and estado=1 ORDER BY idusuario ASC LIMIT $inicio,$porpagina");
 			mysqli_close($conexion);
 			$resutl=mysqli_num_rows($sql);
 			if ($resutl>0) {
@@ -130,6 +130,8 @@ include "../conexion.php";
 		 ?>
 	</section>
 	
-	
+	<footer>
+		<p>Perú, <?php echo fecha(); ?></p>
+	</footer>
 </body>
 </html>	
