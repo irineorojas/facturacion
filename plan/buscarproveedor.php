@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if ($_SESSION['idrol']!=1) {
+if ($_SESSION['idrol']!=1 && $_SESSION['idrol']!=2) {
 	header('Location: principal.php');
 }
 include "../conexion.php";
@@ -24,38 +24,30 @@ include "../conexion.php";
 		<?php 
 		$buscar=strtolower($_REQUEST['buscar']);
 		if(empty($buscar)) {
-			header('Location: mostraruser.php');
+			header('Location: mostrarproveedor.php');
 			mysqli_close($conexion);
 		}
 
 		 ?>
-		<h1>Lista de usuarios</h1>
-		<a href="registrouser.php" class="newuser"><img src="img/plus.png">Nuevo usuario</a>
-		<form action="buscaruser.php" method="get" class="form-buscar">
+		<h1>Lista de Proveedor</h1>
+		<a href="registroproveedor.php" class="newuser">Nuevo Proveedor</a>
+		<form action="buscarproveedor.php" method="get" class="form-buscar">
 			<input type="text" name="buscar" id="buscar" placeholder="Buscar" class="bbuscar">
 			<input type="submit"  class="btn-buscar" value="Buscar">
 		</form>
 		<table>
 			<tr>
-				<th>Id</th>
+				<th>Codigo</th>
+				<th>Proveedor</th>
 				<th>Nombre</th>
-				<th>Correo</th>
-				<th>Usuario</th>
-				<th>Rol</th>
+				<th>Telefono</th>
+				<th>Direccion</th>
 				<th>Editar</th>
 				<th>Eliminar</th>
 			</tr>
 			<?php 
-			$rol='';
-			if ($buscar=='administrador') {
-				$rol = "OR idrol LIKE '%1%'";
-			}else if ($buscar=='supervisor') {
-				$rol ="OR idrol LIKE '%2%'";
-			}else if ($buscar=='vendedor') {
-				$rol = "OR idrol LIKE '%3%'";
-			}
+			$pag=mysqli_query($conexion,"SELECT COUNT(*) as total FROM proveedor WHERE (codproveedor LIKE '%$buscar%' OR proveedor like '%$buscar%' OR contacto LIKE '%$buscar%' OR telefono LIKE '%$buscar%' OR direccion LIKE '%$buscar%' ) AND estado=1");
 
-			$pag=mysqli_query($conexion,"SELECT COUNT(*) as total FROM usuario WHERE (idusuario LIKE '%$buscar%' OR nombre like '%$buscar%' OR correo LIKE '%$buscar%' OR usuario LIKE '%$buscar%' $rol) AND estado=1");
 			$resutado=mysqli_fetch_array($pag);
 			$totalreg=$resutado['total'];
 
@@ -69,26 +61,24 @@ include "../conexion.php";
 			$inicio=($pagina-1)*$porpagina;
 			$totalpag=ceil($totalreg/$porpagina);
 
-			$sql=mysqli_query($conexion, "SELECT u.idusuario,u.nombre,u.correo, u.usuario,r.rol FROM usuario u INNER JOIN rol r ON u.idrol = r.idrol where (u.idusuario like '%$buscar%' or u.nombre like '%$buscar%' or u.correo like '%$buscar%' or u.usuario like '%$buscar%' or r.rol like '%$buscar%') and estado=1 ORDER BY idusuario ASC LIMIT $inicio,$porpagina");
+			$sql=mysqli_query($conexion, "SELECT * FROM proveedor  where (codproveedor like '%$buscar%' or proveedor like '%$buscar%' or contacto like '%$buscar%' or telefono like '%$buscar%' or direccion like '%$buscar%') and estado=1 ORDER BY idusuario ASC LIMIT $inicio,$porpagina");
 			mysqli_close($conexion);
 			$resutl=mysqli_num_rows($sql);
 			if ($resutl>0) {
 				while ($data=mysqli_fetch_array($sql)) {
 				?>	
 					<tr>
-						<td><?php echo $data['idusuario'] ?></td>
-						<td><?php echo $data['nombre'] ?></td>
-						<td><?php echo $data['correo'] ?></td>
-						<td><?php echo $data['usuario'] ?></td>
-						<td><?php echo $data['rol'] ?></td>
+						<td><?php echo $data['codproveedor'] ?></td>
+						<td><?php echo $data['proveedor'] ?></td>
+						<td><?php echo $data['contacto'] ?></td>
+						<td><?php echo $data['telefono'] ?></td>
+						<td><?php echo $data['direccion'] ?></td>
 						<td>
-							<a href="actualizaruser.php?id=<?php echo $data['idusuario'] ?>" class="edit">Edit</a>
-							<?php if ($data['idusuario']!=1) {?>
+							<a href="actualizarcliente.php?id=<?php echo $data['codproveedor'] ?>" class="edit">Edit</a>
 						</td>
 						<td>
-							<a href="eliminaruser.php?id=<?php echo $data['idusuario'] ?>" class="delete">Delete</a>
-						<?php } ?>
-					</td>
+							<a href="eliminarcliente.php?id=<?php echo $data['codproveedor'] ?>" class="delete">Delete</a>
+						</td>
 					</tr>
 				<?php
 				}

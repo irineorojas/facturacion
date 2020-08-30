@@ -1,32 +1,25 @@
 <?php 
 session_start();
-if ($_SESSION['idrol']!=1 && $_SESSION['idrol']!=2) {
-	header('Location: principal.php');
-}
+
 include "../conexion.php";
 if (!empty($_POST)) {
-	if (empty($_POST['dni']) || empty($_POST['nombre']) || empty($_POST['telefono']) || empty($_POST['direccion'])) {
+	if (empty($_POST['proveedor']) || empty($_POST['contacto']) || empty($_POST['telefono']) || empty($_POST['direccion'])) {
 		echo '<script> alert("No se permite campos vacios")</script>';
 	}else{
-		$idcliente=$_POST['id'];
-		$dni=$_POST['dni'];
-		$nombre=$_POST['nombre'];
+		$codproveedor=$_POST['codproveedor'];
+		$proveedor=$_POST['proveedor'];
+		$contacto=$_POST['contacto'];
 		$telefono=$_POST['telefono'];
 		$direccion=$_POST['direccion'];
 
-		$query = mysqli_query($conexion,"SELECT * FROM clinete WHERE (dni=$dni AND idcliente!=$idcliente)");
-		$result=mysqli_fetch_array($query);
-		if ($result >0) {
-			echo '<script> alert("El numero de dni ya existe")</script>';
-		}else{
-				$actua=mysqli_query($conexion,"UPDATE clinete set dni='$dni', nombre='$nombre', telefono='$telefono', direccion='$direccion' WHERE idcliente=$idcliente");
+		$actua=mysqli_query($conexion,"UPDATE proveedor set proveedor='$proveedor', contacto='$contacto', telefono='$telefono', direccion='$direccion' WHERE codproveedor=$codproveedor");
 			
 			if ($actua) {
 				echo '<script> alert("Se Actualizo con exito")</script>';
 			}else{
 			echo '<script> alert("fallo la actualizacion")</script>';
 			}
-		}
+		//}
 
 
 	}
@@ -34,20 +27,20 @@ if (!empty($_POST)) {
 }
 
 if (empty($_REQUEST['id'])) {
-	header('Location: mostraruser.php');
+	header('Location: mostrarproveedor.php');
 	mysqli_close($conexion);	
 }
-$idcliente=$_REQUEST['id'];
-$sql=mysqli_query($conexion,"SELECT * FROM clinete WHERE idcliente=$idcliente");
+$codproveedor=$_REQUEST['id'];
+$sql=mysqli_query($conexion,"SELECT * FROM proveedor WHERE codproveedor=$codproveedor");
 mysqli_close($conexion);
 $resultado=mysqli_num_rows($sql);
 if ($resultado==0) {
-	header('Location: mostrarcliente.php');
+	header('Location: mostrarproveedor.php');
 }else{
 	while ($date=mysqli_fetch_array($sql)) {
-		$idcliente=$date['idcliente'];
-		$dni=$date['dni'];
-		$nombre=$date['nombre'];
+		$codproveedor=$date['codproveedor'];
+		$proveedor=$date['proveedor'];
+		$contacto=$date['contacto'];
 		$telefono=$date['telefono'];
 		$direccion=$date['direccion'];
 	}
@@ -72,18 +65,17 @@ if ($resultado==0) {
 	<div class="registro">
 		<h1>Actualizar de Cliente</h1>
 		<form action="" method="POST">
-			<input type="hidden" name="id" value="<?php echo $idcliente; ?>">
-			<label for="dni">Dni:</label>
-			<input type="number" name="dni" id="dni" placeholder="Número de Dni" value="<?php echo $dni; ?>">
-			<label for="nombre">Nombre:</label>
-			<input type="text" name="nombre" id="nombre" placeholder="Nombre completo" value="<?php echo $nombre; ?>">
+			<input type="hidden" name="codproveedor" value="<?php echo $codproveedor; ?>">
+			<label for="proveedor">Proveedor:</label>
+			<input type="text" name="proveedor" id="proveedor" placeholder="Nombre de la empresa" value="<?php echo $proveedor; ?>">
+			<label for="contacto">Contacto:</label>
+			<input type="text" name="contacto" id="contacto" placeholder="Nombre completo " value="<?php echo $contacto; ?>">
 			<label for="telefono">Telefono:</label>
 			<input type="number" name="telefono" id="telefono" placeholder="Número de teléfono o celular" value="<?php echo $telefono; ?>">
 			<label for="direccion">Direccion:</label>
 			<input type="text" name="direccion" id="direccion" placeholder="Dirección" value="<?php echo $direccion; ?>">
-			<input type="hidden" name="fecha">
 			<button type="submit" class="guardar" name="guardar"><img src="img/update.png" class="save"> Actualizar Cliente</button>
-			<div class="cancelaredit"><a href="mostrarcliente.php">Cancelar</a></div>
+			<div class="cancelaredit"><a href="mostrarproveedor.php">Cancelar</a></div>
 		</form>
 
 	</div>
