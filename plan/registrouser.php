@@ -78,7 +78,7 @@ if (!empty($_POST)) {
 				 ?>
 				 
 			</select>
-			<input type="submit" name="" value="Guardar Usuario" class="guardar"> 
+			<button type="submit" class="guardar" ><img src="img/save.png" class="save"> Guardar Usuario</button>
 		</form>
 
 	</div>

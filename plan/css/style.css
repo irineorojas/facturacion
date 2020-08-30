@@ -1,4 +1,3 @@
-
 *{
 	margin: 0;
 	padding: 0;
@@ -75,7 +74,7 @@ footer{
 
 .registro{
 	width: 30%;
-	margin: 0px auto;
+	margin: 5px auto;
 }
 .registro h1{
 	color: #3498DB;
@@ -83,15 +82,16 @@ footer{
 }
 
 form{
-	background: #AAB7B8;
+	background: #f4f6f7;
 	padding: 20px 50px;
-	border:1px solid #34495E;
+	border:1px solid  #5499c7 ;
 	border-radius: 5px;
 }
  label{
  	display: block;
  	font-size: 16px;
  	margin: 15px auto 5px auto;
+ 	color:  #2471a3;
  }
 
  input, select{
@@ -99,8 +99,9 @@ form{
  	width: 100%;
  	font-size: 16px;
  	padding: 5px;
- 	border:1px solid #34495E;
+ 	border:1px solid  #5499c7;
  	border-radius: 5px;
+ 	color:  #5499c7 ;
  }
 
  .notItem option:first-child{
@@ -109,11 +110,17 @@ form{
  .guardar{
  	margin: 10px auto;
  	background: #2E86C1;
- 	color: #D0D3D4;
+ 	color: #FFFF;
  	font-size: 18px;
  	padding: 10px;
  	border:0;
  	border-radius: 10px;
+ 	display: block;
+ 	margin-top: 20px;
+ }
+ .save{
+ 	vertical-align: middle;
+ 	font-size: 20px
  }
  .guardar:hover{
  	cursor: pointer;
@@ -169,6 +176,7 @@ form{
 	display: inline-block;
 	margin: 0px 0px 0px 30px;
 	font-family: 'times new roman';
+	color: #2471a3;
 }
 .lista .newuser{
 	display: inline-block;
@@ -195,7 +203,8 @@ table th{
 
 tr td{
 	padding: 10px;
-	border: 1px solid #ccc;
+	font-family: Copperplate;
+	border: 1px solid  #3498db;
 }
 
 .edit{
@@ -247,6 +256,9 @@ tr td{
 	margin: auto;
 	background: initial;
 	border:0;
+}
+td{
+	color:#1a5276;
 }
 
 /*................pagina.......*/

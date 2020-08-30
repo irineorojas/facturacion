@@ -30,7 +30,7 @@ include "../conexion.php";
 
 		 ?>
 		<h1>Lista de usuarios</h1>
-		<a href="registrouser.php" class="newuser">Nuevo usuario</a>
+		<a href="registrouser.php" class="newuser"><img src="img/plus.png">Nuevo usuario</a>
 		<form action="buscaruser.php" method="get" class="form-buscar">
 			<input type="text" name="buscar" id="buscar" placeholder="Buscar" class="bbuscar">
 			<input type="submit"  class="btn-buscar" value="Buscar">

@@ -22,7 +22,7 @@ include "../conexion.php";
 	<?php include('header.php') ?>
 	<section class="lista">
 		<h1>Usuarios</h1>
-		<a href="registrouser.php" class="newuser"><img src="img/mas.png"> Nuevo usuario</a>
+		<a href="registrouser.php" class="newuser"><img src="img/plus.png"> Nuevo usuario</a>
 		<form action="buscaruser.php" method="get" class="form-buscar">
 			<input type="text" name="buscar" id="buscar" placeholder="Buscar" class="bbuscar">
 			<input type="submit"  class="btn-buscar" value="Buscar">

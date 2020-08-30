@@ -19,7 +19,7 @@ include "../conexion.php";
 	<?php include('header.php') ?>
 	<section class="lista">
 		<h1>Clientes</h1>
-		<a href="registrocliente.php" class="newuser"><img src="img/mas.png"> Nuevo cliente</a>
+		<a href="registrocliente.php" class="newuser"><img src="img/plus.png"> Nuevo cliente</a>
 		<form action="buscarcliente.php" method="get" class="form-buscar">
 			<input type="text" name="buscar" id="buscar" placeholder="Buscar" class="bbuscar">
 			<input type="submit"  class="btn-buscar" value="Buscar">
@@ -31,6 +31,7 @@ include "../conexion.php";
 				<th>Nombre</th>
 				<th>Telefono</th>
 				<th>Direccion</th>
+				<th>Fecha</th>
 				<th>Editar</th>
 				<?php if ($_SESSION['idrol']==1 || $_SESSION['idrol']==2) { ?>
 				<th>Eliminar</th>
@@ -64,6 +65,7 @@ include "../conexion.php";
 						<td><?php echo $data['nombre'] ?></td>
 						<td><?php echo $data['telefono'] ?></td>
 						<td><?php echo $data['direccion'] ?></td>
+						<td><?php echo $data['fecha'] ?></td>
 						<td>
 							<a href="actualizarcliente.php?id=<?php echo $data['idcliente'] ?>" class="edit">Edit</a>
 						</td>

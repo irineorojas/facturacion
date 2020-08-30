@@ -57,7 +57,7 @@ if (isset($_POST['guardar'])) {
 			<label for="direccion">Direccion:</label>
 			<input type="text" name="direccion" id="direccion" placeholder="Dirección">
 			<input type="hidden" name="fecha">
-			<input type="submit" name="guardar" value="Guardar Cliente" class="guardar"> 
+			<button type="submit" class="guardar" name="guardar"><img src="img/save.png" class="save"> Guardar Cliente</button>
 		</form>
 
 	</div>

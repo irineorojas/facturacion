@@ -1,23 +1,9 @@
-*{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
 body{
 	font-family: 'Open sans';
 	background: #E8E8E8;
 	
 }
 
-h1{
-	font-family: Algerian;
-	font-weight: bold;
-}
-a{
-	text-decoration: none;
-	font-family: "times new roman";
-}
 span{
 	font-size: 14px;
 	line-height: 20px;

@@ -115,7 +115,7 @@ if ($resultado==0) {
 
 				 ?>
 			</select>
-			<input type="submit" name="" value="Actualizar Usuario" class="guardar"> 
+			<button type="submit" class="guardar" ><img src="img/update.png" class="save">Actualizar Usuario</button>
 			<div class="cancelaredit"><a href="mostraruser.php">Cancelar</a></div>
 		</form>
 

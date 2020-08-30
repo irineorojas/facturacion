@@ -80,7 +80,7 @@ if ($resultado==0) {
 			<label for="direccion">Direccion:</label>
 			<input type="text" name="direccion" id="direccion" placeholder="Dirección" value="<?php echo $direccion; ?>">
 			<input type="hidden" name="fecha">
-			<input type="submit" name="guardar" value="Actualizar Cliente" class="guardar"> 
+			<button type="submit" class="guardar" name="guardar"><img src="img/update.png" class="save"> Actualizar Cliente</button>
 			<div class="cancelaredit"><a href="mostrarcliente.php">Cancelar</a></div>
 		</form>
 

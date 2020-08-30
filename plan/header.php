@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 	if (empty($_SESSION['active'])) {
 	    header('Location: ../');
 	}
@@ -35,11 +35,12 @@
 					<a href="#"><img src="img/cliente.png" class="icono" alt="">Cliente</a>
 					<ul class="submenu">
 						<li class="go-back">Atras</li>
-
 						<li><a href="registrocliente.php">Nuevo Cliente</a></li>
 						<li><a href="mostrarcliente.php">Mostrar Cliente</a></li>
 					</ul>
 				</li>
+				<?php if ($_SESSION['idrol']==1 || $_SESSION['idrol']==2) {
+				?>
 				<li class="item-submenu" menu="3">
 					<a href="#"><img src="img/prov.png" class="icono" alt="">Proveedor</a>
 					<ul class="submenu">
@@ -49,6 +50,7 @@
 						<li><a href="mostrarproveedor.php">Mostrar Proveedor</a></li>
 					</ul>
 				</li>
+			<?php } ?>
 				<li class="item-submenu" menu="4">
 					<a href="#"><img src="img/producto.png" class="icono" alt="">Producto</a>
 					<ul class="submenu">
