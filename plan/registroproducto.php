@@ -56,7 +56,6 @@ if (isset($_POST['guardar'])) {
 	<?php include "meses.php"; ?>
 	<script src="js/jquery-3.5.1.min.js"></script>
 	<script src="js/main.js"></script>
-	<script type="text/javascript" src="js/uerys.js"></script>
 </head>
 <body>
 	<?php include('header.php') ?>
