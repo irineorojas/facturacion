@@ -4,6 +4,16 @@ if ($_SESSION['idrol']!=1 && $_SESSION['idrol']!=2) {
 	header('Location: principal.php');
 }
 include "../conexion.php";
+if (isset($_GET['id'])) {
+	$codproveedor=$_GET['id']; 
+	$query=mysqli_query($conexion, "UPDATE proveedor SET estado=0 WHERE codproveedor='$codproveedor'");
+	mysqli_close($conexion);
+	if($query){
+		header("Location: mostrarproveedor.php");
+	}else{
+		echo "Fatal Error";
+	}
+}
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +81,7 @@ include "../conexion.php";
 							<a href="actualizarproveedor.php?id=<?php echo $data['codproveedor'] ?>" class="edit">Edit</a>
 						</td>
 						<td>
-							<a href="eliminarproveedor.php?id=<?php echo $data['codproveedor'] ?>" class="delete">Delete</a>
+							<a href="mostrarproveedor.php?id=<?php echo $data['codproveedor'] ?>" class="delete">Delete</a>
 						</td>
 					</tr>
 				<?php

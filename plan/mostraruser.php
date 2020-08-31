@@ -4,6 +4,22 @@ if ($_SESSION['idrol']!=1) {
 	header('Location: principal.php');
 }
 include "../conexion.php";
+if (isset($_GET['id'])) {
+	if ($_POST['idusuario']==1) {
+		header("Location: mostraruser.php");
+		mysqli_close($conexion);
+		exit;
+	}
+	$idusuario=$_GET['id']; 
+	$query=mysqli_query($conexion, "UPDATE usuario SET estado=0 WHERE idusuario='$idusuario'");
+	mysqli_close($conexion);
+	if($query){
+		header("Location: mostraruser.php");
+	}else{
+		echo "Fatal Error";
+	}
+}
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +86,7 @@ include "../conexion.php";
 						</td>
 						<?php if ($data['idusuario']!=1) {?>
 						<td>
-							<a href="eliminaruser.php?id=<?php echo $data['idusuario']; ?>" class="delete">Delete</a>
+							<a href="mostraruser.php?id=<?php echo $data['idusuario']; ?>" class="delete">Delete</a>
 							<?php } ?>
 						</td>
 					</tr>

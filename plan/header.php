@@ -51,12 +51,15 @@
 					</ul>
 				</li>
 			<?php } ?>
+
 				<li class="item-submenu" menu="4">
 					<a href="#"><img src="img/producto.png" class="icono" alt="">Producto</a>
 					<ul class="submenu">
 						<li class="go-back">Atras</li>
-
+						<?php if ($_SESSION['idrol']==1 || $_SESSION['idrol']==2) {
+						?>
 						<li><a href="registroproducto.php">Nuevo Producto</a></li>
+					<?php } ?>
 						<li><a href="mostrarproducto.php">Mostrar Producto</a></li>
 					</ul>
 				</li>

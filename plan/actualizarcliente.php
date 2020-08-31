@@ -38,7 +38,7 @@ if (empty($_REQUEST['id'])) {
 	mysqli_close($conexion);	
 }
 $idcliente=$_REQUEST['id'];
-$sql=mysqli_query($conexion,"SELECT * FROM clinete WHERE idcliente=$idcliente");
+$sql=mysqli_query($conexion,"SELECT * FROM clinete WHERE idcliente=$idcliente AND estado=1");
 mysqli_close($conexion);
 $resultado=mysqli_num_rows($sql);
 if ($resultado==0) {

@@ -31,7 +31,7 @@ if (empty($_REQUEST['id'])) {
 	mysqli_close($conexion);	
 }
 $codproveedor=$_REQUEST['id'];
-$sql=mysqli_query($conexion,"SELECT * FROM proveedor WHERE codproveedor=$codproveedor");
+$sql=mysqli_query($conexion,"SELECT * FROM proveedor WHERE codproveedor=$codproveedor and estado =1");
 mysqli_close($conexion);
 $resultado=mysqli_num_rows($sql);
 if ($resultado==0) {

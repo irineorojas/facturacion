@@ -314,3 +314,9 @@ td{
 	width: 25px;
 	vertical-align:middle;
 }
+
+/*-----cargar foto---*/
+.cargar{
+	width: 100%;
+	padding: 5px;
+}
