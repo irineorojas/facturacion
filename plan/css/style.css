@@ -124,7 +124,7 @@ form{
  }
  .guardar:hover{
  	cursor: pointer;
- 	background: #27AE60;
+ 	background: #7DB4ED;
  }
 
  .cancelaredit{
@@ -212,6 +212,9 @@ tr td{
 }
 .delete{
 	color: #E74C3C;
+}
+.add{
+	color: #335BFF;
 }
 
 .delete_form{
@@ -319,4 +322,43 @@ td{
 .cargar{
 	width: 100%;
 	padding: 5px;
+}
+
+/*---modal ----*/
+.modal{
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	background-color: rgb(0,0,0,0.3);
+	display: none;
+}
+.cuerpo{
+	width: 100%;
+	display: inline-flex;
+	justify-content: center;
+	align-items:top;
+}
+.cuerpo h1 , h2{
+	color: #2980B9;
+	text-align: center;
+}
+.cuerpo h2{
+	color:#196F3D;
+}
+.exitt{
+	width: 120px;
+	margin: auto;
+	display: flex; 
+	justify-content: center; 
+	font-size: 22px;
+	background: #E74C3C;
+	padding: 10px;
+	border-radius: 10px;
+	color: #FFF;
+}
+.exitt:hover{
+	background: #EC7063;
+}
+.exitt img{
+	margin: 0px 5px;
 }

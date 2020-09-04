@@ -14,6 +14,7 @@ include "../conexion.php";
 	<?php include "meses.php"; ?>
 	<script src="js/jquery-3.5.1.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/querys.js"></script>
 </head>
 <body>
 	<?php include('header.php') ?>
@@ -33,8 +34,11 @@ include "../conexion.php";
 				<th>Cantidad</th>
 				<th>Foto</th>
 				<th>Fecha</th>
+				<?php if ($_SESSION['idrol']==1 || $_SESSION['idrol']==2) { ?>
+				<th>Agregar</th>
 				<th>Editar</th>
 				<th>Eliminar</th>
+			<?php } ?>
 			</tr>
 			<?php 
 
@@ -71,14 +75,17 @@ include "../conexion.php";
 						<td><?php echo $data['existencia'] ?></td>
 						<td> <img src="<?php echo $foto; ?>" alt="<?php echo $data['descripcion'] ?>"></td>
 						<td><?php echo $data['fecha'] ?></td>
+						<?php if ($_SESSION['idrol']==1 || $_SESSION['idrol']==2) { ?>
+						<td>
+							<a product="<?php echo $data['codproducto'] ?>" href="javascript:abrir()" class="add addp">Agregar</a>
+						</td>
 						<td>
 							<a href="actualizarproducto.php?id=<?php echo $data['codproducto'] ?>" class="edit">Edit</a>
 						</td>
-						<?php// if ($_SESSION['idrol']==1 || $_SESSION['idrol']==2) { ?>
 						<td>
-							<a href="eliminarproducto.php?id=<?php echo $data['codproducto'] ?>" class="delete">Delete</a>
+							<a href="mostrarproducto.php?id=<?php echo $data['codproducto'] ?>" class="delete">Delete</a>
 						</td>
-					<?php //} ?>
+					<?php } ?>
 					</tr>
 				<?php
 				}
