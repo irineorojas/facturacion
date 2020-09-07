@@ -75,19 +75,3 @@
 			</ul>
 		</nav>
 	</header>
-	<div class="modal" id="mod">
-		<div class="cuerpo">
-			<form action="post" name="addproducto" id="addproducto" onsubmit="event.preventDefaul(); sentDataProduct();">
-				<h1>Agregar producto</h1>
-				<h2 class="nombreproducto"></h2><br>
-				<input type="number" name="cantidad" id="actidad" placeholder="Cantidad del producto" required></input><br>
-				<input type="number" name="precio" id="precio" placeholder="Precio del producto" required></input><br>
-				<input type="hidden" name="idproducto" id="idproducto" required>
-				<input type="hidden" name="accion" value="AddProducto">
-				<button class="guardar"><img src="img/save.png" class="save" alt="">Agregar</button>
-				<a href="" class="exitt cerrarmodal" onclick="cerrarmodal();"><img src="img/exit.png" class="save" alt="">Cerrar</a>
-			</form>
-
-		</div>
-		
-	</div>

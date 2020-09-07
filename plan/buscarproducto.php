@@ -1,16 +1,7 @@
 <?php 
 session_start();
 include "../conexion.php";
-if (isset($_GET['id'])) {
-	$codproducto=$_GET['id']; 
-	$query=mysqli_query($conexion, "UPDATE producto SET estado=0 WHERE codproducto='$codproducto'");
-	mysqli_close($conexion);
-	if($query){
-		header("Location: mostrarproducto.php");
-	}else{
-		echo "Fatal Error";
-	}
-}
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,10 +20,18 @@ if (isset($_GET['id'])) {
 <body>
 	<?php include('header.php') ?>
 	<section class="lista">
+		<?php 
+		$buscar=strtolower($_REQUEST['buscar']);
+		if(empty($buscar)) {
+			header('Location: mostrarproducto.php');
+			mysqli_close($conexion);
+		}
+
+		 ?>
 		<h1>Productos</h1>
 		<a href="registroproducto.php" class="newuser"><img src="img/plus.png"> Nuevo Porducto</a>
 		<form action="buscarproducto.php" method="get" class="form-buscar">
-			<input type="text" name="buscar" id="buscar" placeholder="Buscar" class="bbuscar">
+			<input type="text" name="buscar" id="buscar" placeholder="Buscar producto o por codigo" class="bbuscar">
 			<input type="submit"  class="btn-buscar" value="Buscar">
 		</form>
 		<table>
@@ -51,7 +50,8 @@ if (isset($_GET['id'])) {
 			</tr>
 			<?php 
 
-			$pag=mysqli_query($conexion,"SELECT COUNT(*) as total FROM producto where estado=1");
+			$pag=mysqli_query($conexion,"SELECT COUNT(*) as total FROM producto where (codproducto like '%$buscar%' or descripcion like '%buscar%') and estado=1");
+
 			$resutado=mysqli_fetch_array($pag);
 			$totalreg=$resutado['total'];
 
@@ -65,7 +65,7 @@ if (isset($_GET['id'])) {
 			$inicio=($pagina-1)*$porpagina;
 			$totalpag=ceil($totalreg/$porpagina);
 
-			$sql=mysqli_query($conexion, "SELECT pr.codproducto, pr.descripcion, p.proveedor, pr.precio, pr.existencia, pr.foto, pr.fecha FROM producto pr INNER JOIN proveedor p ON pr.codproveedor=p.codproveedor WHERE pr.estado=1 ORDER BY pr.codproducto ASC LIMIT $inicio,$porpagina");
+			$sql=mysqli_query($conexion, "SELECT pr.codproducto, pr.descripcion, p.proveedor, pr.precio, pr.existencia, pr.foto, pr.fecha FROM producto pr INNER JOIN proveedor p ON pr.codproveedor=p.codproveedor WHERE (pr.codproducto like '%$buscar%' or pr.descripcion like '%$buscar%') and pr.estado=1 ORDER BY pr.codproducto ASC LIMIT $inicio,$porpagina");
 			mysqli_close($conexion);
 			$resutl=mysqli_num_rows($sql);
 			if ($resutl>0) {
@@ -99,6 +99,10 @@ if (isset($_GET['id'])) {
 			 ?>
 			
 		</table>
+		<?php 
+		if ($totalreg!=0) {
+		
+		 ?>
 		<div class="pagina">
 			<ul>
 				<?php if ($pagina!=1) {
@@ -120,7 +124,15 @@ if (isset($_GET['id'])) {
 				<?php } ?>
 			</ul>
 			
-		</div>	
+		</div>
+		<?php
+		}else{
+		?>	
+		<p style="text-align: center; font-size: 20px; margin-top: 20px">NO SE ENCUENTRA REGISTRADO LA PALABRA "<?php echo $buscar; ?>"</p>
+		<?php	
+		}
+
+		 ?>	
 	</section>
 	<footer>
 		<p>Perú, <?php echo fecha(); ?></p>

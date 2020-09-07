@@ -1,5 +1,6 @@
 <?php 
 include "../conexion.php";
+print_r($_POST); exit;
 if (!empty($_POST)) {
 	if ($_POST['accion']=='infoProducto') {
 		$codproducto=$_POST['producto'];
@@ -13,6 +14,9 @@ if (!empty($_POST)) {
 		}
 		echo 'error';
 		exit;	
+	}
+	if ($_POST['accion']=='AddProducto') {
+		echo "exito";
 	}
 }
 exit;
