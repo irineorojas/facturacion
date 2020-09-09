@@ -1,23 +1,27 @@
 <?php 
 include "../conexion.php";
-print_r($_POST); exit;
+//print_r($_POST); exit;
 if (!empty($_POST)) {
-	if ($_POST['accion']=='infoProducto') {
-		$codproducto=$_POST['producto'];
-		$query =mysqli_query($conexion, "SELECT codproducto, descripcion FROM producto WHERE codproducto=$codproducto AND estado=1");
-		mysqli_close($conexion);
-		$result=mysqli_num_rows($query);
-		if ($result>0) {
-			$dato=mysqli_fetch_array($query);
-	    	echo json_encode($dato, JSON_UNESCAPED_UNICODE);
-			exit;
+
+	/*buscar cliente*/
+	if ($_POST['accion']=='clientes') {
+		if (!empty($_POST['cliente'])) {
+			$dni=$_POST['cliente'];
+
+			$query=mysqli_query($conexion,"SELECT * FROM clinete WHERE dni like '$dni' AND estado=1");
+			mysqli_close($conexion);
+			$result=mysqli_num_rows($query);
+			$data='';
+			if ($result>0) {
+				$data=mysqli_fetch_assoc($query);
+			}else{
+				$data=0;
+			}
+			echo json_encode($data,JSON_UNESCAPED_UNICODE);
 		}
-		echo 'error';
-		exit;	
+		exit;
 	}
-	if ($_POST['accion']=='AddProducto') {
-		echo "exito";
-	}
+	
 }
 exit;
  ?>

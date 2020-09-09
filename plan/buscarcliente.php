@@ -33,7 +33,7 @@ include "../conexion.php";
 			<input type="text" name="buscar" id="buscar" placeholder="Buscar" class="bbuscar">
 			<input type="submit"  class="btn-buscar" value="Buscar">
 		</form>
-		<table>
+		<table class="tabla">
 			<tr>
 				<th>Id</th>
 				<th>Dni</th>

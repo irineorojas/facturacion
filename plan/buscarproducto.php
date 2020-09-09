@@ -34,7 +34,7 @@ include "../conexion.php";
 			<input type="text" name="buscar" id="buscar" placeholder="Buscar producto o por codigo" class="bbuscar">
 			<input type="submit"  class="btn-buscar" value="Buscar">
 		</form>
-		<table>
+		<table class="tabla">
 			<tr>
 				<th>Codigo</th>
 				<th>Producto</th>
@@ -99,10 +99,7 @@ include "../conexion.php";
 			 ?>
 			
 		</table>
-		<?php 
-		if ($totalreg!=0) {
 		
-		 ?>
 		<div class="pagina">
 			<ul>
 				<?php if ($pagina!=1) {
@@ -124,15 +121,7 @@ include "../conexion.php";
 				<?php } ?>
 			</ul>
 			
-		</div>
-		<?php
-		}else{
-		?>	
-		<p style="text-align: center; font-size: 20px; margin-top: 20px">NO SE ENCUENTRA REGISTRADO LA PALABRA "<?php echo $buscar; ?>"</p>
-		<?php	
-		}
-
-		 ?>	
+		</div>	
 	</section>
 	<footer>
 		<p>Perú, <?php echo fecha(); ?></p>

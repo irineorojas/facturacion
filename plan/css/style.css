@@ -150,6 +150,9 @@ form{
  	.registro{
  		width: 50%;
  	}
+ 	.contener, .medio,  .tabless{
+ 		max-width: 90%;
+ 	}
  }
  @media screen and (max-width: 620px) {
  	.banner p, .line{
@@ -161,11 +164,17 @@ form{
  	.registro{
  		width: 60%;
  	}
+ 	.contener, .medio,.tabless{
+ 		max-width: 99%;
+ 	}
+ 	
  }
  @media screen and (max-width: 420px){
  	.registro{
  		width: 80%;
  	}
+
+ 	
  }
 
 
@@ -187,13 +196,13 @@ form{
 	font-size: 18px;
 	margin: 20px 5px;
 }
-table{
+.tabla{
 	border-collapse: collapse;
 	font-size: 16px;
 	width: 95%;
 	margin:auto;
 }
-table th{
+.tabla th{
 	text-align: left;
 	padding: 10px;
 	color: #fff;
@@ -201,7 +210,7 @@ table th{
 	border: 1px solid;	
 }
 
-tr td{
+.tabla tr td{
 	padding: 10px;
 	font-family: Copperplate;
 	border: 1px solid  #3498db;
@@ -361,4 +370,45 @@ td{
 }
 .exitt img{
 	margin: 0px 5px;
+}
+
+
+/*-----ventas----*/
+.contener{
+	width: 880px;
+	margin: 10px auto;
+	padding: 0;
+}
+.top{
+	width: 65%;
+	margin: 10px auto;
+}
+.top .newuser{
+	text-decoration: none;	
+	display: inline-block;
+	background: #2E86C1;
+	color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 18px;
+	margin: 10px 5px;
+}
+
+.top .newuser:hover{
+	background: #3498DB;
+}
+.medio{
+	width: 880px;
+	margin: 10px auto;
+}
+.tabless{
+	max-width: 900px;
+	margin: 10px auto;
+	padding: 5px;
+}
+.tabless a{
+	text-decoration: none;
+}
+#saves{
+	display: none;
 }

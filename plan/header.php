@@ -64,12 +64,12 @@
 					</ul>
 				</li>
 				<li class="item-submenu" menu="5">
-					<a href="#"><img src="img/fac.png" class="icono" alt="">Factura</a>
+					<a href="#"><img src="img/fac.png" class="icono" alt="">Venta</a>
 					<ul class="submenu">
 						<li class="go-back">Atras</li>
 
-						<li><a href="#">Nuevo Factura</a></li>
-						<li><a href="#">Mostrar Factura</a></li>
+						<li><a href="nuevaventa.php">Nuevo Ventas</a></li>
+						<li><a href="#">Mostrar Ventas</a></li>
 					</ul>
 				</li>
 			</ul>

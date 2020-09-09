@@ -5,7 +5,7 @@ if ($_SESSION['idrol']!=1 && $_SESSION['idrol']!=2) {
 }
 require_once '../conexion.php';
 if (!empty($_POST)) {
-	if (empty($_POST['descripcion']) || empty($_POST['precio'])) {
+	if (empty($_POST['descripcion']) || empty($_POST['precio'])  ) {
 		echo '<script> alert("No se permite campos vacios")</script>';
 	}else{
 		$codproducto=$_POST['codproducto'];
