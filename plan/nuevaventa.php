@@ -29,11 +29,11 @@ include "../conexion.php";
 	</div>
 	<div class="contener">
 		<form id="formnewcliente" name="formnewcliente">
-			<input type="hidden" name="newcliente" value="addcliente">
+			<input type="hidden" name="accion" value="addcliente">
 			<input type="hidden" name="idcliente" id="idcliente" required>
 			<div class="form-group"  style="margin: auto; width: 200px">
 		    	<span class="text" id="validatedInputGroupPrepend">DNI :</span>
-		      	<input type="number" class="form-control" name="dniclie" id="dniclie">
+		      	<input type="number" class="form-control" name="dniclie" id="dniclie" required>
 		    </div>
 		  <div>
 		    <div class="" style=" width: 250px">
@@ -49,7 +49,8 @@ include "../conexion.php";
 		      	<input type="text" class="form-control " name="direccionclie" id="direccionclie" disabled required>
 		    </div>
 		  </div>
-		   <a href="" class="btn btn-primary btn-lg mt-3" id="saves"><img src="img/save.png">Guardar</a>
+		  <button type="submit" class="btn btn-primary" id="saves"><img src="img/save.png">Gardar</button>
+		   <!--<a href="#" class="btn btn-primary btn-lg mt-3" >Guardar</a>-->
 		</form>
 	</div>
 	<div class="medio">

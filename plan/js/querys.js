@@ -21,7 +21,6 @@ $('#dniclie').keyup(function(e){
 		data: {accion:accion, cliente:cl},
 
 		success: function(response){
-			console.log(response);
 			if (response==0) {
 				$('#idcliente').val('');
 				$('#nombreclie').val('');
@@ -49,6 +48,36 @@ $('#dniclie').keyup(function(e){
 
 		}
 	});
+});
+
+//guardas cliente desde ventas 
+
+$('#formnewcliente').submit(function(e){
+	e.preventDefault();
+	$.ajax({
+		url: 'ajax.php',
+		type: "POST",
+		async: true,
+		data: $('#formnewcliente').serialize(),
+
+		success: function(response){
+			if (response!='error') {
+				$('#idcliente').val(response);
+				$('#nombreclie').attr('disabled', 'disabled');
+				$('#telefonoclie').attr('disabled', 'disabled');
+				$('#direccionclie').attr('disabled', 'disabled');
+				
+				$('.btncliente').slideUp();
+
+				$('#saves').slideUp();
+			}
+
+		},
+		error: function(error){
+
+		}
+	});
+
 });
 
 });
