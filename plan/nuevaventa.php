@@ -50,14 +50,13 @@ include "../conexion.php";
 		    </div>
 		  </div>
 		  <button type="submit" class="btn btn-primary" id="saves"><img src="img/save.png">Gardar</button>
-		   <!--<a href="#" class="btn btn-primary btn-lg mt-3" >Guardar</a>-->
 		</form>
 	</div>
 	<div class="medio">
 		<form class="form-row " style="display: flex; justify-content: space-between;">
 			<div>
 				<h3>Vendedor</h3>
-				<p>Nombre del vendedor</p>
+				<p><?php echo $_SESSION['nombre'];?></p>
 			</div>
 			<div>
 				<a href="" class="btn btn-secondary btn-sml m-2" id="btnanular">Anular</a>
@@ -80,12 +79,12 @@ include "../conexion.php";
 			    </tr>
 			    <tr>
 			      <td><input type="text" name="codproduct" id="codproduct" placeholder="Codigo" style="width: 100px"></td>
-			      <td>--</td>
-			      <td>--</td>
+			      <td id="descrip">--</td>
+			      <td id="exis">--</td>
 			      <td> <input type="number" name="cantproduct" id="cantproduct" placeholder="Cantidad" style="width: 80px" disabled></td>
-			      <td>00.00</td>
-			      <td>00.0</td>
-			      <td><a href="" class="btn btn-success btn-sm">Agregar</a></td>
+			      <td id="precio">00.00</td>
+			      <td id="preciototal">00.0</td>
+			      <td><a href="" class="btn btn-success btn-sm" id="addproduct" style="display: none;">Agregar</a></td>
 
 			    </tr>
 			    <thead class="thead-light">

@@ -26,7 +26,6 @@ if (!empty($_POST)) {
 	///agregar cliente
 
 	if ($_POST['accion']=='addcliente'){
-		print_r($_POST);
 
 		$dni=$_POST['dniclie'];
 		$nombre=$_POST['nombreclie'];
@@ -45,6 +44,25 @@ if (!empty($_POST)) {
 		echo $mensa;
 		exit;
 	}
+
+	///mostrar producto
+
+	if ($_POST['accion']=='infproductos'){
+		$producto=$_POST['producto'];
+		$query=mysqli_query($conexion,"SELECT codproducto, descripcion, existencia, precio FROM producto WHERE codproducto=$producto AND estado=1");
+		$resulta=mysqli_num_rows($query);
+		if ($resulta>0) {
+			$data=mysqli_fetch_assoc($query);
+			echo json_encode($data, JSON_UNESCAPED_UNICODE);
+			exit;
+			
+		}
+		
+		echo 'error';
+		exit;
+	}
+
+
 	
 }
 exit;
