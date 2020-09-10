@@ -1,7 +1,6 @@
 <?php 
 session_start();
 include "../conexion.php";
-
  ?>
 
 <!DOCTYPE html>
@@ -20,15 +19,17 @@ include "../conexion.php";
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-	<?php include "header.php" ?>
+	<?php include "header.php" ?> 
+	<h2 style="margin-top: 10px;">Form de Ventas</h2>
 	<div class="form-inline top">
 	  <div class="form-group mb-2">
-	    <h2>Nueva Venta</h2>
+	    <h2>Nuevo Cliente</h2>
 	  </div>
 	  <a href="" class="newuser btncliente"><img src="img/plus.png"> Nuevo Cliente</a>
 	</div>
 	<div class="contener">
 		<form id="formnewcliente" name="formnewcliente">
+			<h3>Datos del cliente</h3>
 			<input type="hidden" name="accion" value="addcliente">
 			<input type="hidden" name="idcliente" id="idcliente" required>
 			<div class="form-group"  style="margin: auto; width: 200px">
@@ -66,6 +67,7 @@ include "../conexion.php";
 	</div>
 	
 	<div class="tabless">
+		<h3>Productos</h3>
 		<table class="table">
 			<thead class="thead-light">
 				<tr>
@@ -98,48 +100,25 @@ include "../conexion.php";
 				</tr>
 				</thead>
 			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td colspan="2">Manzana</td>
-					<td scope="col">1</td>
-					<td scope="col">200.0</td>
-					<td scope="col">300.0</td>
-					<td scope="col">
-						<a href="" class="btn btn-danger btn-sm m-2" >Eliminar</a>
-					</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td colspan="2">Manzana</td>
-					<td scope="col">1</td>
-					<td scope="col">200.0</td>
-					<td scope="col">300.0</td>
-					<td scope="col">
-						<a href="" class="btn btn-danger btn-sm m-2">Eliminar</a>
-					</td>
-				</tr>
+			<tbody id="detalventa">
+				
 			</tbody>
-		    <tfoot>
-		    	<tr>
-		    		<td colspan="5">SUBTOTAL Q.</td>
-		    		<td>1000.0</td>
-		    	</tr>
-		    	<tr>
-		    		<td colspan="5">IVA (18%)</td>
-		    		<td>180</td>
-		    	</tr>
-		    	<tr>
-		    		<td colspan="5">TOTAL Q.</td>
-		    		<td>10000.0</td>
-		    	</tr>
+		    <tfoot id="detaltotal">
+		    	
 		    </tfoot>
 		</table>
 	</div>	
 
+
 	<footer>
 		<p>Perú, <?php echo fecha(); ?></p>
 	</footer>
+	<script>
+		$(document).ready(function(){
+			var userid='<?php echo $_SESSION['idusuario']; ?>';
+			mostDetalle(userid);
+		});
+	</script>
 	<script src="js/querys.js"></script>
 	
 	
